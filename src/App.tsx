@@ -1,5 +1,4 @@
-import { createElement, useMemo } from 'react'
-import MdParser from './util/MdParser';
+import MarkdownSection from './components/MarkdownSection';
 
 const ve =`<a href="./a"><img width="60px" height="60px" src="https://cdn.antanasga.lt/bitmap.webp" align="right" /></a>
 <a>
@@ -27,14 +26,7 @@ hello
 `
 
 function App() {
-  const items = useMemo(() => {
-    const start = performance.now(); 
-    const parsed = MdParser(ve);
-    const end = performance.now();
-    console.log(end - start);
-    return parsed;
-  }, []);
-  return createElement("section", { style: { width: "100vw" }}, items);
+  return <MarkdownSection markdown={ve} />;
 }
 
 export default App

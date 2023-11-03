@@ -24,18 +24,17 @@ function collectAttributes(attributes: string | undefined, key: string) {
   result.key = key;
   if (result.href) {
   // FIXME: add configuration
-    result.href = HrefHandler(result.href + "", "http://localhost:5173/");
+    result.href = HrefHandler(result.href + "");
   }
   if (result.src) {
   // FIXME: add configuration
-    result.src = HrefHandler(result.src + "", "http://localhost:5173/");
+    result.src = HrefHandler(result.src + "");
   }
   return result
 }
 
 const HtmlToken: TokenHandlerV2<"html"> = function (token, container) {
   const tagMatched = token.raw.match(/<\/?[^>]+\/?>/mi);
-  console.log({tagMatched});
   let before = token.raw;
   let after: string | undefined;
   
@@ -43,7 +42,9 @@ const HtmlToken: TokenHandlerV2<"html"> = function (token, container) {
     [before, after] = token.raw.split(tagMatched[0], 2);
   }
   
-  TextToken({ type: "text", text: before, raw: before }, container);
+  if (before) {
+    TextToken({ type: "text", text: before, raw: before }, container);
+  }
   
   
   const tagMatch = firstOrUndefinedOf(tagMatched)?.match(/<(?<endtagStart>\/)?(?<descriptor>[^>\s]+)\s?(?<params>[^>]+)?>$/mi);
@@ -56,10 +57,9 @@ const HtmlToken: TokenHandlerV2<"html"> = function (token, container) {
   paramMatch = isSelfEnding ? paramMatch.substring(0, paramMatch.length - 2) : paramMatch;
   const isEnd = !!tagMatch?.groups?.endtagStart;
 
-  console.log({tag, paramMatch, isSelfEnding, isEnd});
-
   if (!tag || !handleableTagList?.map(x => x?.toLowerCase()).includes(tag)) {
-    return TextToken(token, container);
+    const unsplitAfter = ((tagMatched ?? "") + (after ?? "")).replace(/</gm, "&lt;").replace(/>/gm, "&gt;");
+    return TextToken({ type: "text", text: unsplitAfter, raw: unsplitAfter }, container);
   }
 
   let returnedContext = container;
