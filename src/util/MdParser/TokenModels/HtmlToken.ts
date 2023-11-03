@@ -4,6 +4,7 @@ import { TokenHandlerV2 } from "../types";
 import { firstOrUndefinedOf } from "../../array/Selector";
 import { uuidv4 } from "../../string/Guid";
 import TextToken from "./TextToken";
+import Constants from "../Helpers/Constants";
 
 function collectAttributes(attributes: string | undefined, key: string) {
   const result: Record<string, unknown> = {};
@@ -51,7 +52,7 @@ const HtmlToken: TokenHandlerV2<"html"> = function (token, container) {
   let paramMatch = tagMatch?.groups?.params ?? "";
   // FIXME: add configuration
   const handleableTagList = ["a", "img"];
-  const isSelfEnding = paramMatch.endsWith("/");
+  const isSelfEnding = paramMatch.endsWith("/") || (tag && Constants.Elements.selfClosing.includes(tag));
   paramMatch = isSelfEnding ? paramMatch.substring(0, paramMatch.length - 2) : paramMatch;
   const isEnd = !!tagMatch?.groups?.endtagStart;
 
