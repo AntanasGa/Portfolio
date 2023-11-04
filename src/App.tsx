@@ -1,32 +1,8 @@
-import MarkdownSection from './components/MarkdownSection';
-
-const ve =`<a href="./a"><img width="60px" height="60px" src="https://cdn.antanasga.lt/bitmap.webp" align="right" /></a>
-<a>
-
-fee \`foo\`
-\`\`\`
-hello
-\`\`\`
-
-</a>
-
-<script></script>
-
->> Inserted
->
-> bee
-1. [ ] item
-
-![Alt text](https://cdn.antanasga.lt/bitmap.webp "a title")
-
-## h2
-|a|b|
-|-|-|
-|c|d|
-`
+import { useTranslation } from 'react-i18next';
 
 function App() {
-  return <MarkdownSection markdown={ve} />;
+  const { t } = useTranslation("pages", { keyPrefix: "index" });
+  return <div>{t('hello')}</div>;
 }
 
 export default App
