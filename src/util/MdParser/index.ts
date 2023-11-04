@@ -1,7 +1,7 @@
 import { lexer } from "marked";
 import Containerizer from "./Containerizer";
 import HtmlContainer from "./Helpers/HtmlContainer";
-import { Fragment, createElement } from "react";
+import { Fragment, ReactHTML, createElement } from "react";
 import { ConfigContext } from "./types";
 
 export default function MdParser(markdown: string, context?: ConfigContext) {
@@ -13,6 +13,7 @@ export default function MdParser(markdown: string, context?: ConfigContext) {
   const innerContext = context ?? {};
   innerContext.html ??= {};
   innerContext.html.allowedTags ??= ["a", "img"];
+  innerContext.html.allowedTags = innerContext.html.allowedTags.map(x => x?.toLowerCase() as keyof ReactHTML | undefined);
 
   const lexed = lexer(markdown);
   const made = Containerizer(lexed, undefined, innerContext);

@@ -41,7 +41,7 @@ const HtmlToken: TokenHandler<"html"> = function (token, container, config) {
   }
   
   if (before) {
-    TextToken({ type: "text", text: before, raw: before }, container);
+    TextToken({ type: "text", text: before, raw: before }, container, config);
   }
   
   
@@ -75,7 +75,7 @@ const HtmlToken: TokenHandler<"html"> = function (token, container, config) {
   }
   
   if (after) {
-    returnedContext = HtmlToken({ type: "html", raw: after}, returnedContext);
+    returnedContext = HtmlToken({ type: "html", raw: after}, returnedContext, config);
   }
 
   return returnedContext;

@@ -24,7 +24,7 @@ function Containerizer(tokenList?: TokensList | Token[], currentContext?: HtmlCo
     parserContext = hanlder?.(firstItem, parserContext, config) ?? parserContext;
   }
 
-  return Containerizer(tokenList, parserContext);
+  return Containerizer(tokenList, parserContext, config);
 }
 
 export default Containerizer;
