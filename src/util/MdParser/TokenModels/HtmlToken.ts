@@ -1,6 +1,6 @@
 import { ReactHTML } from "react";
 import HrefHandler from "../Helpers/HrefHandler";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import { firstOrUndefinedOf } from "../../array/Selector";
 import { uuidv4 } from "../../string/Guid";
 import TextToken from "./TextToken";
@@ -33,7 +33,7 @@ function collectAttributes(attributes: string | undefined, key: string) {
   return result
 }
 
-const HtmlToken: TokenHandlerV2<"html"> = function (token, container) {
+const HtmlToken: TokenHandler<"html"> = function (token, container) {
   const tagMatched = token.raw.match(/<\/?[^>]+\/?>/mi);
   let before = token.raw;
   let after: string | undefined;

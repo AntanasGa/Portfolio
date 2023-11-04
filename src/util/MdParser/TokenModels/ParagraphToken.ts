@@ -1,9 +1,9 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
-const ParagraphToken: TokenHandlerV2<"paragraph"> = function (token, container) {
+const ParagraphToken: TokenHandler<"paragraph"> = function (token, container) {
   const currentContext = container.push("div");
 
   let respondedWith: HtmlContainer | undefined = undefined;

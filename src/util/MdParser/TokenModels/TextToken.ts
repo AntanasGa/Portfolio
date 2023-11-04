@@ -1,9 +1,9 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
-const TextToken: TokenHandlerV2<"text"> = function (token, container) {
+const TextToken: TokenHandler<"text"> = function (token, container) {
 
   let respondedWith: HtmlContainer | undefined = undefined;
 

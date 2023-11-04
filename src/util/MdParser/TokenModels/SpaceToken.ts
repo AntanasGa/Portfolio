@@ -1,6 +1,6 @@
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 
-const SpaceToken: TokenHandlerV2<"space"> = function (_, container) {
+const SpaceToken: TokenHandler<"space"> = function (_, container) {
   container.push("br");
   return container;
 }

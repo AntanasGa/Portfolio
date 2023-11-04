@@ -1,4 +1,4 @@
-import { TokenHandlerV2Table } from "../types";
+import { TokenHandlerTable } from "../types";
 import BlockQuoteToken from "./BlockQuoteToken";
 import CodeSpanToken from "./CodeSpanToken";
 import CodeToken from "./CodeToken";
@@ -15,7 +15,7 @@ import StrongToken from "./StrongToken";
 import TableToken from "./TableToken";
 import TextToken from "./TextToken";
 
-const innerMapper: Partial<TokenHandlerV2Table> = {
+const innerMapper: Partial<TokenHandlerTable> = {
   list: ListToken,
   list_item: ListItemToken,
   blockquote: BlockQuoteToken,

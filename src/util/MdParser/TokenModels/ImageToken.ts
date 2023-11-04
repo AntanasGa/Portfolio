@@ -1,7 +1,7 @@
 import HrefHandler from "../Helpers/HrefHandler";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 
-const ImageToken: TokenHandlerV2<"image"> = function (token, container) {
+const ImageToken: TokenHandler<"image"> = function (token, container) {
   const imageProps = {
     src: HrefHandler(token.href),
     title: token.title,

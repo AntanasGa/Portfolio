@@ -1,11 +1,11 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
 
 
-const HeadingToken: TokenHandlerV2<"heading"> = function (token, container) {
+const HeadingToken: TokenHandler<"heading"> = function (token, container) {
   const depth: 1 | 2 | 3 | 4 | 5 | 6 = token.depth > 6 ? 6 : token.depth < 1 ? 1 : token.depth;
   const currentContext = container.push(`h${depth}`);
 

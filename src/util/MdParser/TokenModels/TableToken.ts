@@ -1,6 +1,6 @@
 import { Tokens } from "marked";
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import Containerizer from "../Containerizer";
 
 const TableCellHandler = (cellList: Tokens.TableCell[], isHeader: boolean = false) => {
@@ -13,7 +13,7 @@ const TableCellHandler = (cellList: Tokens.TableCell[], isHeader: boolean = fals
   return tableRowContainer.root();
 }
 
-const TableToken: TokenHandlerV2<"table"> = function (token, container) {
+const TableToken: TokenHandler<"table"> = function (token, container) {
 
   const currentContext = container.push("table");
 

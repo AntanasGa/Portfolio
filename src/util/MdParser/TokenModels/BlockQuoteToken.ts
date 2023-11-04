@@ -1,11 +1,11 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
 
 
-const BlockQuoteToken: TokenHandlerV2<"blockquote"> = function (token, container) {
+const BlockQuoteToken: TokenHandler<"blockquote"> = function (token, container) {
   const currentContext = container.push("blockquote");
 
   let respondedWith: HtmlContainer | undefined = undefined;

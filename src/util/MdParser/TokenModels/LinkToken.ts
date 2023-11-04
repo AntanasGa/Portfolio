@@ -1,10 +1,10 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
 import HrefHandler from "../Helpers/HrefHandler";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
-const LinkToken: TokenHandlerV2<"link"> = function (token, container) {
+const LinkToken: TokenHandler<"link"> = function (token, container) {
   const attributeMap = {
   // FIXME: add configuration
     href: HrefHandler(token.href, "http://localhost:5173/"),

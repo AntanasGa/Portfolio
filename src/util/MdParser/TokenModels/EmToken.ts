@@ -1,11 +1,11 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
 
 
-const EmToken: TokenHandlerV2<"em"> = function (token, container) {
+const EmToken: TokenHandler<"em"> = function (token, container) {
   const currentContext = container.push("em");
 
   let respondedWith: HtmlContainer | undefined = undefined;

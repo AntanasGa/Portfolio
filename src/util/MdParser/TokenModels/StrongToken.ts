@@ -1,11 +1,11 @@
 import HtmlContainer from "../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../types";
+import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
 
 
-const StrongToken: TokenHandlerV2<"strong"> = function (token, container) {
+const StrongToken: TokenHandler<"strong"> = function (token, container) {
   const currentContext = container.push("strong");
 
   let respondedWith: HtmlContainer | undefined = undefined;
