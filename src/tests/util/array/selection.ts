@@ -26,6 +26,13 @@ describe("nthOrUndefinedOf", () => {
     const selectedIndex = 3;
     expect(nthOrUndefinedOf(testArray, selectedIndex)).toBe(testArray[selectedIndex])
   });
+
+  it.concurrent("should work with filled array and provided negative index", ({ expect }) => {
+    const testArray = [1, 2, 3, 4];
+    const selectedIndex = -1;
+    const expectedIndex = testArray.length + selectedIndex;
+    expect(nthOrUndefinedOf(testArray, selectedIndex)).toBe(testArray[expectedIndex]);
+  });
 });
 
 describe("FirstOrUndefined", () => {
