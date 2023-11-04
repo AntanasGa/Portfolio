@@ -3,21 +3,28 @@ export default function(link: string, root?: string) {
   if (link.toLowerCase().startsWith("javascript:")) {
     return "";
   }
+
+  const fullLinkList = [
+    "http://",
+    "https://",
+  ];
   const pathStartList = [
     "./",
     "/",
     "#",
-    "http://",
-    "https://",
   ];
 
-  if (pathStartList.some(x => link.toLocaleLowerCase().startsWith(x))) {
+  pathStartList.push(...fullLinkList);
+
+  if (pathStartList.some(x => link.toLowerCase().startsWith(x))) {
     return link;
   }
   
   if (root === undefined) {
     return "http://" + link;
   }
-  //TODO: add configuration
-  return link;
+
+  const prependRoot = fullLinkList.some(x => root.toLowerCase().startsWith(x)) ? root : `http://${root}`;
+  const fullPath = new URL(link, prependRoot);
+  return fullPath.toString();
 }
