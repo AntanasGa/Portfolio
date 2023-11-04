@@ -4,10 +4,10 @@ import { TokenHandler } from "../types";
 import ReverseEscape from "../../string/ReverseEscape";
 import Containerizer from "../Containerizer";
 
-const LinkToken: TokenHandler<"link"> = function (token, container) {
+const LinkToken: TokenHandler<"link"> = function (token, container, config) {
   const attributeMap = {
-  // FIXME: add configuration
-    href: HrefHandler(token.href, "http://localhost:5173/"),
+    href: HrefHandler(token.href, config?.link?.baseUri),
+    onClick: config?.link?.onClick,
     title: token.title,
   };
 

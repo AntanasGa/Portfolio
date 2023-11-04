@@ -1,8 +1,8 @@
 import HtmlContainer from "../../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../../types";
+import { TokenHandler } from "../../types";
 import Containerizer from "../../Containerizer";
 
-const ListToken: TokenHandlerV2<"list"> = function (token, container) {
+const ListToken: TokenHandler<"list"> = function (token, container, config) {
   const listProps = {
     start: token.start && token.start != "1" ? token.start : undefined,
   };
@@ -12,7 +12,7 @@ const ListToken: TokenHandlerV2<"list"> = function (token, container) {
   let respondedWith: HtmlContainer | undefined = undefined;
 
   if (token.items?.length) {
-    respondedWith = Containerizer(token.items, currentContext);
+    respondedWith = Containerizer(token.items, currentContext, config);
   }
   
   return !respondedWith || respondedWith === currentContext ? container : respondedWith;

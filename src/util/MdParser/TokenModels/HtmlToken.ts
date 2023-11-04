@@ -1,12 +1,12 @@
 import { ReactHTML } from "react";
 import HrefHandler from "../Helpers/HrefHandler";
-import { TokenHandler } from "../types";
+import { ConfigContext, TokenHandler } from "../types";
 import { firstOrUndefinedOf } from "../../array/Selector";
 import { uuidv4 } from "../../string/Guid";
 import TextToken from "./TextToken";
 import Constants from "../Helpers/Constants";
 
-function collectAttributes(attributes: string | undefined, key: string) {
+function collectAttributes(attributes: string | undefined, key: string, config?: ConfigContext) {
   const result: Record<string, unknown> = {};
   attributes?.replace(/\s+/g, " ")
     .trim()
@@ -23,17 +23,15 @@ function collectAttributes(attributes: string | undefined, key: string) {
   
   result.key = key;
   if (result.href) {
-  // FIXME: add configuration
-    result.href = HrefHandler(result.href + "");
+    result.href = HrefHandler(result.href + "", config?.link?.baseUri);
   }
   if (result.src) {
-  // FIXME: add configuration
-    result.src = HrefHandler(result.src + "");
+    result.src = HrefHandler(result.src + "", config?.link?.baseUri);
   }
   return result
 }
 
-const HtmlToken: TokenHandler<"html"> = function (token, container) {
+const HtmlToken: TokenHandler<"html"> = function (token, container, config) {
   const tagMatched = token.raw.match(/<\/?[^>]+\/?>/mi);
   let before = token.raw;
   let after: string | undefined;
@@ -51,8 +49,7 @@ const HtmlToken: TokenHandler<"html"> = function (token, container) {
   
   const tag = tagMatch?.groups?.descriptor.toLowerCase() as (keyof ReactHTML) | undefined;
   let paramMatch = tagMatch?.groups?.params ?? "";
-  // FIXME: add configuration
-  const handleableTagList = ["a", "img"];
+  const handleableTagList = config?.html?.allowedTags ?? [];
   const isSelfEnding = paramMatch.endsWith("/") || (tag && Constants.Elements.selfClosing.includes(tag));
   paramMatch = isSelfEnding ? paramMatch.substring(0, paramMatch.length - 2) : paramMatch;
   const isEnd = !!tagMatch?.groups?.endtagStart;
@@ -65,7 +62,7 @@ const HtmlToken: TokenHandler<"html"> = function (token, container) {
   let returnedContext = container;
 
   if (!isEnd) {
-    const attributeList = collectAttributes(paramMatch, uuidv4());
+    const attributeList = collectAttributes(paramMatch, uuidv4(), config);
     const currContext = container.push(tag, attributeList, true);
     if (!isSelfEnding) {
       returnedContext = currContext;

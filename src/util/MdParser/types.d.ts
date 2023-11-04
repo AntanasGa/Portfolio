@@ -1,5 +1,7 @@
 import { Tokens } from "marked";
 import HtmlContainer from "./Helpers/HtmlContainer";
+import { LinkConfiguration } from "./TokenModels/types/Link";
+import { HtmlConfiguration } from "./TokenModels/types/Html";
 
 // because Token.Generic denies Exclude we have to manually define the types
 export type AcceptedTokens =
@@ -25,15 +27,13 @@ export type AcceptedTokens =
   | Tokens.Br
   | Tokens.Del
 
-// interface InnerConfigContext {
-//   heading?: HeadingConfiguration;
-//   link?: LinkConfiguration;
-//   image?: ImageConfiguration;
-//   html: HtmlConfiguration;
-// }
+export interface ConfigContext {
+  link?: LinkConfiguration;
+  html?: HtmlConfiguration,
+}
 
 // export type ConfigContext = keyof InnerConfigContext extends AcceptedTokens['type'] ? InnerConfigContext : never;
 
-export type TokenHandlerV2<K extends AcceptedTokens['type']> = (token: Extract<AcceptedTokens, { type: K }> | Tokens.Generic, container: HtmlContainer) => HtmlContainer
+export type TokenHandler<K extends AcceptedTokens['type']> = (token: Extract<AcceptedTokens, { type: K }> | Tokens.Generic, container: HtmlContainer, context?: ConfigContext) => HtmlContainer
 
-export type TokenHandlerV2Table = { [K in AcceptedTokens['type']]: TokenHandlerV2<K> };
+export type TokenHandlerTable = { [K in AcceptedTokens['type']]: TokenHandlerV2<K> };

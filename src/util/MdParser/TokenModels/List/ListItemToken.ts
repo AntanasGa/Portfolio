@@ -1,11 +1,11 @@
 import { createElement } from "react";
 import HtmlContainer from "../../Helpers/HtmlContainer";
-import { TokenHandlerV2 } from "../../types";
+import { TokenHandler } from "../../types";
 import Containerizer from "../../Containerizer";
 import { uuidv4 } from "../../../string/Guid";
 import ReverseEscape from "../../../string/ReverseEscape";
 
-const ListItemToken: TokenHandlerV2<"list_item"> = function (token, container) {
+const ListItemToken: TokenHandler<"list_item"> = function (token, container, config) {
   const currentContext = container.push("li");
 
   if (token.task) {
@@ -21,7 +21,7 @@ const ListItemToken: TokenHandlerV2<"list_item"> = function (token, container) {
   let respondedWith: HtmlContainer | undefined = undefined;
 
   if (token.tokens) {
-    respondedWith = Containerizer(token.tokens, currentContext);
+    respondedWith = Containerizer(token.tokens, currentContext, config);
   } else {
     currentContext.context.push(ReverseEscape(token.text));
   }
