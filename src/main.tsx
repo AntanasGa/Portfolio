@@ -7,29 +7,36 @@ import RootErrorBoundry from './components/RootErrorBoundry.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
 import "./translations";
+import RouterErrorMiddleware from './routing/middleware/RouterErrorMiddleware.tsx';
 
 const router = createBrowserRouter([
   {
-    errorElement: <RootErrorBoundry />,
+    element: <RouterErrorMiddleware />,
     children: [
       {
-        path: "/",
-        element: <RootLocaleSetterMiddleware />,
+        errorElement: <RootErrorBoundry />,
+        element: <RootErrorBoundry />,
         children: [
           {
-            path: ':locale',
-            element: <LocalePathPickerMiddleware />,
+            path: "/",
+            element: <RootLocaleSetterMiddleware />,
             children: [
               {
-                index: true,
-                element: <App />,
+                path: ':locale',
+                element: <LocalePathPickerMiddleware />,
+                children: [
+                  {
+                    index: true,
+                    element: <App />,
+                  }
+                ],
               }
             ],
           }
         ],
       }
     ],
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,19 +1,23 @@
-import { useMemo } from "react";
-import { useRouteError } from "react-router-dom";
-import RouterError from "../util/router/RouterError";
+import { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import RouterErrorContext from "../util/router/RouterErrorContext";
+import { Outlet, useRouteError } from "react-router-dom";
 
 
 function RootErrorBoundry() {
+  const [ routeError ] = useContext(RouterErrorContext) ?? [];
   const error = useRouteError();
   const { t } = useTranslation("pages", { keyPrefix: "error" });
 
-  const errorInstance = useMemo(() => error instanceof RouterError ? error : undefined, [error]);
-
   const message = useMemo(() => {
-    const translation = t((errorInstance?.status ?? "") + "");
+    const translation = t((routeError?.status ?? "") + "");
     return translation === "error." ? "" : translation;
-  }, [t, errorInstance]);
+  }, [t, routeError]);
+  
+  if (!error && !routeError) {
+    return <Outlet />;
+  }
+
   return (
     <div>
       <h1>{ t("defaultMessage") }</h1>

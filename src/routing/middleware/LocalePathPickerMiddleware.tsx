@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, useParams } from "react-router-dom";
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "../../translations/config";
 import { getCookies, setCookie } from "../../util/dom/cookie";
 import RouterError from "../../util/router/RouterError";
+import RouterErrorContext from "../../util/router/RouterErrorContext";
 
 function LocalePathPickerMiddleware() {
+  const [ _, setError ] = useContext(RouterErrorContext) ?? [undefined, undefined];
   const { i18n } = useTranslation();
   const { locale } = useParams();
 
@@ -22,9 +24,9 @@ function LocalePathPickerMiddleware() {
     i18n.changeLanguage(selectedLanguage);
 
     if (!paramLanguage) {
-      throw new RouterError("Locale not found", 404);
+      setError?.(new RouterError("Locale not found", 404));
     }
-  }, [locale, i18n]);
+  }, [locale, i18n, setError]);
   return <Outlet />;
 }
 
