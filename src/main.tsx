@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import LocaleWrapper from './components/Translation/LocaleWrapper.tsx';
-import RedirectWrapper from './components/Translation/RedirectWrapper.tsx';
+import LocalePathPickerMiddleware from './routing/middleware/LocalePathPickerMiddleware';
+import RootLocaleSetterMiddleware from './routing/middleware/RootLocaleSetterMiddleware';
 import RootErrorBoundry from './components/RootErrorBoundry.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <RedirectWrapper />,
+        element: <RootLocaleSetterMiddleware />,
         children: [
           {
             path: ':locale',
-            element: <LocaleWrapper />,
+            element: <LocalePathPickerMiddleware />,
             children: [
               {
                 index: true,

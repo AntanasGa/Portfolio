@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, useLocation, useNavigate, useRouteError } from "react-router-dom";
-import { DEFAULT_LANGUAGE } from "../../translations/config";
+import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "../../translations/config";
 import { firstOrUndefinedOf } from "../../util/array/Selector";
 import { getCookies, setCookie } from "../../util/dom/cookie";
 
-function RedirectWrapper() {
+function RootLocaleSetterMiddleware() {
   const error = useRouteError();
 
   const { i18n } = useTranslation();
@@ -14,7 +14,7 @@ function RedirectWrapper() {
 
   useEffect(() => {
     const { locale = "" } = getCookies();
-    const selectedLanguage = (firstOrUndefinedOf(i18n.languages.filter(x => x.toLowerCase() === locale?.toLowerCase())) ?? DEFAULT_LANGUAGE).toLowerCase();
+    const selectedLanguage = (firstOrUndefinedOf(LANGUAGE_LIST.filter(x => x.toLowerCase() === locale.toLowerCase())) ?? DEFAULT_LANGUAGE).toLowerCase();
     
     if (locale.toLocaleLowerCase() !== selectedLanguage) {
       setCookie({ name: "locale", value: selectedLanguage, path: "/", sameSite: "lax" });
@@ -29,4 +29,4 @@ function RedirectWrapper() {
   return <Outlet />;
 }
 
-export default RedirectWrapper;
+export default RootLocaleSetterMiddleware;

@@ -5,7 +5,7 @@ import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "../../translations/config";
 import { getCookies, setCookie } from "../../util/dom/cookie";
 import RouterError from "../../util/router/RouterError";
 
-function LocaleWrapper() {
+function LocalePathPickerMiddleware() {
   const { i18n } = useTranslation();
   const { locale } = useParams();
 
@@ -28,4 +28,4 @@ function LocaleWrapper() {
   return <Outlet />;
 }
 
-export default LocaleWrapper;
+export default LocalePathPickerMiddleware;
