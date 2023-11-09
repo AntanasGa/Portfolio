@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
 import "./translations";
 import RouterErrorMiddleware from './routing/middleware/RouterErrorMiddleware.tsx';
+import CatchAllMiddleware from './routing/middleware/CatchAllMiddleware.tsx';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
                 ],
               }
             ],
+          },
+          {
+            path: "*",
+            element: <CatchAllMiddleware />
           }
         ],
       }
