@@ -18,6 +18,5 @@ export default function MdParser(markdown: string, context?: ConfigContext) {
   const lexed = lexer(markdown);
   const made = Containerizer(lexed, undefined, innerContext);
   const root = made?.root();
-  // eslint-disable-next-line react/no-children-prop
-  return createElement(Fragment, { children: root?.context.map(x => x instanceof HtmlContainer ? x.generateComponent() : x ) ?? [] });
+  return createElement(Fragment, null, root?.context.map(x => x instanceof HtmlContainer ? x.generateComponent() : x ) ?? []);
 }

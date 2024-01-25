@@ -33,6 +33,6 @@ const innerMapper: Partial<TokenHandlerTable> = {
   em: EmToken,
 }
 
-export const mapper = Object.seal(innerMapper);
+export const mapper = Object.freeze(innerMapper);
 
 export const pickHandler = (index: string): index is keyof typeof mapper => index in mapper;
