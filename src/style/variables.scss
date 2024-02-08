@@ -1,0 +1,48 @@
+$size-1: 0.1rem;
+$size-2: 0.2rem;
+$size-4: 0.4rem;
+$size-8: 0.8rem;
+$size-10: 1.4rem;
+$size-12: 1.8rem;
+
+
+$transition-speed-fastest: 0.15s;
+
+
+$darkBackground: #242424;
+$darkAnimationTranslucentColor: #FFFFFF03;
+
+$lightBackground: #ceeffc;
+$lightAnimationTranslucentColor: #FFFFFF20;
+
+@media (prefers-color-scheme: light) {
+  // attempting to prevent flashbanging
+  :root {
+    color: #000000;
+    background-color: $lightBackground;
+    --animation-translucent-color: $lightAnimationTranslucentColor;
+  }
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  color-scheme: light;
+  background-color: #ceeffc;
+  --animation-translucent-color: #FFFFFF20;
+}
+
+:root.#{$darkClassName} {
+  color-scheme: dark;
+  color: #FFFFFF;
+  background-color: $darkBackground;
+  --animation-translucent-color: $darkAnimationTranslucentColor;
+}

@@ -1,0 +1,40 @@
+.tag {
+    display: flex;
+    gap: $size-2;
+    justify-content: space-between;
+    align-items: center;
+    
+    &.active button {
+        outline: 0.1rem solid rgba(var(--background-color),0.2);
+        background-color: rgba(var(--background-color),0.2);
+    }
+
+    & button {
+        border: none;
+        display: flex;
+        gap: $size-4;
+        border-radius: 0.5rem;
+        transition-property: border, background;
+        transition-duration: $transition-speed-fastest;
+        padding: $size-1 $size-4;
+        align-items: center;
+        height: $size-12;
+        outline: 0.1rem solid rgba(var(--background-color),0.1);
+        background-color: rgba(var(--background-color),0.1);
+        
+        &:hover, &:focus {
+            outline: 1px solid rgba(var(--background-color), 0.8);
+            background-color: rgba(var(--background-color), 0.5);
+        }
+        
+        & > img {
+            width: $size-10;
+            height: $size-10;
+        }
+    }
+
+
+    & > a {
+        filter: invert(50%);
+    }
+}
