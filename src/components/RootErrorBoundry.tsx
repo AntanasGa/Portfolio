@@ -10,11 +10,19 @@ function RootErrorBoundry() {
   const { t } = useTranslation("pages", { keyPrefix: "error" });
 
   const message = useMemo(() => {
-    const translation = t((routeError?.status ?? "") + "");
-    return translation === "error." ? "" : translation;
-  }, [t, routeError]);
+    if (routeError) {
+      const translation = t((routeError?.status ?? "") + "");
+      return translation === "error." ? "" : translation;
+    }
+    
+    if (!error) {
+      return undefined;
+    }
+
+    return error instanceof Error ? error.message : error + "";
+  }, [t, routeError, error]);
   
-  if (!error && !routeError) {
+  if (message === undefined) {
     return <Outlet />;
   }
 
