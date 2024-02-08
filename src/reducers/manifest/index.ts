@@ -15,6 +15,7 @@ export interface IContentTagItem {
   tagged?: boolean,
   logo?: string,
   href?: string,
+  background?: `#${string}`,
 }
 
 export interface IManifestReducer {
