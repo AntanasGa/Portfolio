@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import aliases from './aliases';
 
 export default defineConfig({
   test: {
@@ -10,5 +11,8 @@ export default defineConfig({
     include: [
       "src/tests/**/*",
     ],
-  }
+  },
+  resolve: {
+    alias: aliases,
+  },
 });

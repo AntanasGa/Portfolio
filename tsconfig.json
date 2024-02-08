@@ -18,8 +18,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "~/components/*": ["./src/components/*"],
+      "~/reducers/*": ["./src/reducers/*"],
+      "~/util/*": ["./src/util/*"],
+    }
   },
-  "include": ["src"],
+  "include": ["src", "aliases.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
