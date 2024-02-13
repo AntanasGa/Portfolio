@@ -1,4 +1,4 @@
-import { AnimationEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { AnimationEvent, Fragment, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManifestStateContext } from '~/reducers/manifest';
 
@@ -84,15 +84,15 @@ function TerminalWindow() {
               :
               <br />
               { tags.map(([_, tag]) =>
-                <>
-                  <span style={{ color: tag.background, marginLeft: "2rem" }} key={ tag.name + "_name" }>
+                <Fragment key={ tag.name }>
+                  <span style={{ color: tag.background, marginLeft: "2rem" }}>
                     { tag.href
                       ? <a href={ tag.href } target="_blank" rel="noreferrer noopener" style={{ color: tag.background }}>{ tag.name }</a>
                       : tag.name
                     }
                   </span>
-                  <br key={ tag.name + "_spacer" } />
-                </>
+                  <br />
+                </Fragment>
               )}
               <span className="terminal__body--accent">{ t("developingSince") }</span>
               <span>: 2018</span>
