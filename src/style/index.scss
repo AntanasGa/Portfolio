@@ -3,6 +3,37 @@
 @import "variables.scss";
 @import "components/index.scss";
 
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  color-scheme: dark;
+
+  background-color: $darkBackground;
+  color: $darkText;
+  --animation-translucent-color: #{$darkAnimationTranslucentColor};
+  --text-color: #{$darkText};
+}
+
+:root.#{$lightClassName} {
+  color-scheme: light;
+  color: $lightText;
+  background-color: $lightBackground;
+  --animation-translucent-color: #{$lightAnimationTranslucentColor};
+  --text-color: #{$lightText};
+}
+
+a {
+  color: inherit;
+}
+
 body {
   margin: 0;
   display: flex;

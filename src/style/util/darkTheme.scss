@@ -1,7 +1,7 @@
-$darkClassName: "dark";
+$lightClassName: "light";
 
 @mixin darkTheme {
-    :root.#{$darkClassName} {
+    :root.#{$lightClassName} {
         @content;
     }
 }

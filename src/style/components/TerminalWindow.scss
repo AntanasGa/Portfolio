@@ -1,0 +1,93 @@
+.terminal {
+    max-width: 40rem;
+    min-width: $min-width;
+    border-radius: $size-4;
+    animation: stall $transition-speed-slow * 2.5, terminal__fade-in $transition-speed-normal $transition-speed-slow * 2.5;
+    // FIXME: This is a temporary fix for the terminal window as we don't have a cointainer class
+    margin-left: 2rem;
+
+    &__header {
+        display: flex;
+        gap: $size-2;
+        justify-content: space-between;
+        align-items: center;
+        padding: $size-8 $size-8;
+        background-color: #333333;
+        border-top-left-radius: $size-4;
+        border-top-right-radius: $size-4;
+        user-select: none;
+
+        & > .terminal__actions {
+            display: flex;
+            gap: $size-2;
+            align-items: center;
+            & > .terminal__button {
+                width: $size-10;
+                height: $size-10;
+                border-radius: 50%;
+                background-color: #474747;
+            }
+        }
+    }
+    &__body {
+        font-family: "Fira Mono", monospace;
+        height: 15rem;
+        overflow-y: auto;
+        background: #232323;
+        border-bottom-left-radius: $size-4;
+        border-bottom-right-radius: $size-4;
+
+        &--accent {
+            color: $pallet-secondary;
+        }
+
+        & > p {
+            &.input {
+                position: relative;
+                &::before {
+                    content: "~/Portfolio $ ";
+                    color: $terminal-accent;
+                }
+                
+                &.active {
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        width: 0.6rem;
+                        height: 1.1rem;
+                        background-color: #FFF;
+                        animation: terminal__cursor $transition-speed-slow steps(2, jump-none) infinite alternate;
+                        position: absolute;
+                        top: -0.1rem;
+                        transform: translateX(0.3rem);
+                    }
+                    &.typing {
+                        &::after {
+                            animation: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes terminal__fade-in {
+    from {
+        transform: translateY(1rem) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes terminal__cursor {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

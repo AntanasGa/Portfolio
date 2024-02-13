@@ -11,7 +11,8 @@ export interface IContentItem {
 }
 
 export interface IContentTagItem {
-  type: string,
+  name: string,
+  type: "content" | "tech",
   tagged?: boolean,
   logo?: string,
   href?: string,
