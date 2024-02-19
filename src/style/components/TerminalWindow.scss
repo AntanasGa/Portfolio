@@ -3,8 +3,6 @@
     min-width: $min-width;
     border-radius: $size-4;
     animation: stall $transition-speed-slow * 2.5, terminal__fade-in $transition-speed-normal $transition-speed-slow * 2.5;
-    // FIXME: This is a temporary fix for the terminal window as we don't have a cointainer class
-    margin-left: 2rem;
 
     &__header {
         display: flex;
@@ -69,6 +67,12 @@
                 }
             }
         }
+    }
+}
+
+@include media-medium() {
+    .terminal {
+        margin-right: $size-8;
     }
 }
 
