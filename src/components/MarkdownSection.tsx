@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import MdParser from "../util/MdParser";
-import { ConfigContext } from "../util/MdParser/types";
+import MdParser from "~/util/MdParser";
+import { ConfigContext } from "~/util/MdParser/types";
 import { ITestableComponent } from "./types";
 
 interface MarkdownSectionProps extends ITestableComponent {

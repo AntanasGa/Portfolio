@@ -1,6 +1,6 @@
 
 import { describe, it } from 'vitest';
-import { firstOrUndefinedOf, nthOrUndefinedOf } from '../../../util/array/Selector';
+import { firstOrUndefinedOf, nthOrUndefinedOf } from '~/util/array/Selector';
 
 describe("nthOrUndefinedOf", () => {
   it.concurrent("should work with empty array", ({ expect }) => {

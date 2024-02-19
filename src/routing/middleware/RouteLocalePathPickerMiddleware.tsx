@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, useParams } from "react-router-dom";
-import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "../../translations/config";
-import { getCookies, setCookie } from "../../util/dom/cookie";
-import RouterError from "../../util/router/RouterError";
-import RouterErrorContext from "../../util/router/RouterErrorContext";
+import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "~/translations/config";
+import { getCookies, setCookie } from "~/util/dom/cookie";
+import RouterError from "~/util/router/RouterError";
+import RouterErrorContext from "~/util/router/RouterErrorContext";
 
 function LocalePathPickerMiddleware() {
   const [ _, setError ] = useContext(RouterErrorContext) ?? [undefined, undefined];

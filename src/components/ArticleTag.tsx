@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { IContentTagItem } from "../reducers/manifest";
+import { IContentTagItem } from "~/reducers/manifest";
 import { HOST } from "~/util/cdn/constants";
 import { useMemo } from "react";
 import hexColorParser from "~/util/string/HexColorParser";

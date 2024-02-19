@@ -1,5 +1,5 @@
 import { it } from 'vitest';
-import ReverseEscape from '../../../util/string/ReverseEscape';
+import ReverseEscape from '~/util/string/ReverseEscape';
 
 it.concurrent("should generate uuidv4", ({ expect }) => {
   const initial = "<script>";

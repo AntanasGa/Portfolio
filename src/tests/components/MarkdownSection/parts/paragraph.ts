@@ -1,6 +1,6 @@
 import { it } from 'vitest';
 import { getRender, PARAGRAPH_HTML_TAG } from '../helpers/index';
-import { firstOrUndefinedOf } from '../../../../util/array/Selector';
+import { firstOrUndefinedOf } from '~/util/array/Selector';
 
 const helloContent = "hello";
 it.concurrent("Should have paragraph with hello", ({ expect }) => {

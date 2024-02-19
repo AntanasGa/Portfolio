@@ -1,6 +1,6 @@
 import { it } from 'vitest';
 import { PARAGRAPH_HTML_TAG, getRender } from '../helpers/index';
-import { firstOrUndefinedOf } from '../../../../util/array/Selector';
+import { firstOrUndefinedOf } from '~/util/array/Selector';
 
 const helloContent = "hello";
 it.concurrent("Should work with anchor elements by default", ({ expect }) => {

@@ -23,6 +23,7 @@
       "~/components/*": ["./src/components/*"],
       "~/reducers/*": ["./src/reducers/*"],
       "~/util/*": ["./src/util/*"],
+      "~/translations/*": ["./src/translations/*"],
     }
   },
   "include": ["src", "aliases.ts"],

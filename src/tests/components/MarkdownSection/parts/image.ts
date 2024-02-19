@@ -1,6 +1,6 @@
 import { it } from 'vitest';
 import { getRender } from '../helpers/index';
-import { firstOrUndefinedOf } from '../../../../util/array/Selector';
+import { firstOrUndefinedOf } from '~/util/array/Selector';
 
 const helloContent = "hello";
 it.concurrent("Should have image with /hello.png as src", ({ expect }) => {

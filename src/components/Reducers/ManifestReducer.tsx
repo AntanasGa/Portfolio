@@ -1,7 +1,7 @@
 import { ReactNode, useReducer } from "react";
-import { IManifestReducer, ManifestReducerContext, ManifestStateContext, manifestInitializer } from "../../reducers/manifest";
-import abstractReducerFunction from "../../util/reducer/abstractReducerFunction";
-import useReducerMask from "../../util/reducer/useReducerMask";
+import { IManifestReducer, ManifestReducerContext, ManifestStateContext, manifestInitializer } from "~/reducers/manifest";
+import abstractReducerFunction from "~/util/reducer/abstractReducerFunction";
+import useReducerMask from "~/util/reducer/useReducerMask";
 
 export default function ManifestReducer({ children }: { children: ReactNode }) {
 

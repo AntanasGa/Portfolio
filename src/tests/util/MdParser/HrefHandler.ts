@@ -1,5 +1,5 @@
 import { it } from 'vitest';
-import HrefHandler from '../../../util/MdParser/Helpers/HrefHandler';
+import HrefHandler from '~/util/MdParser/Helpers/HrefHandler';
 
 it.concurrent("Should work with absolute paths", ({ expect }) => {
   const expectedUri = "/a";

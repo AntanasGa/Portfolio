@@ -1,6 +1,6 @@
 import { it } from 'vitest';
 import { PARAGRAPH_HTML_TAG, getRender } from '../helpers/index';
-import { firstOrUndefinedOf, nthOrUndefinedOf } from '../../../../util/array/Selector';
+import { firstOrUndefinedOf, nthOrUndefinedOf } from '~/util/array/Selector';
 
 const helloContent = "hello";
 it.concurrent("Should mix well with strong", ({ expect }) => {

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import RouterErrorContext from "../../util/router/RouterErrorContext";
-import RouterError from "../../util/router/RouterError";
+import RouterErrorContext from "~/util/router/RouterErrorContext";
+import RouterError from "~/util/router/RouterError";
 
 
 function CatchAllMiddleware() {

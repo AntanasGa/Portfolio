@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { LANGUAGE_MAP } from "../../translations/config";
-import createReducerInitializer from "../../util/reducer/createReducerInitialize";
-import { ReducerContextFunctionMap } from "../../util/reducer/types";
+import { LANGUAGE_MAP } from "~/translations/config";
+import createReducerInitializer from "~/util/reducer/createReducerInitialize";
+import { ReducerContextFunctionMap } from "~/util/reducer/types";
 
 export interface IContentItem {
   tags: number[],

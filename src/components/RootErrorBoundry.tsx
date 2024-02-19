@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import RouterErrorContext from "../util/router/RouterErrorContext";
+import RouterErrorContext from "~/util/router/RouterErrorContext";
 import { Outlet, useRouteError } from "react-router-dom";
 
 
