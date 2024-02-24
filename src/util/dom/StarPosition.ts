@@ -5,9 +5,9 @@ import random from "~/util/number/random";
  * Returns a CSS object with a random position for a star
  */
 export function getStarPosition() {
-  const x = random(0, 99) + (random(0, 999) / 1000);
+  const x = random(10, 90) + (random(0, 999) / 1000);
   
-  const y = random(0, 99) + (random(0, 999) / 1000);
+  const y = random(10, 90) + (random(0, 999) / 1000);
   
   const shiftFactor = (random(75, 150));
   

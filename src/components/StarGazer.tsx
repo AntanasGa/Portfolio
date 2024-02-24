@@ -5,9 +5,23 @@ import { getStarPosition } from "~/util/dom/StarPosition";
 function StarGazer() {
   const starCount = 200;
 
-  const { transform } = useContext(StarBackgroundStateContext);
+  const starBackgroundState = useContext(StarBackgroundStateContext);
 
-  const star = useMemo(() => new Array(starCount).fill(undefined).map(() => getStarPosition()), []);
+  const star = useMemo(
+    () =>
+      new Array(starCount)
+        .fill(undefined)
+        .map(() => getStarPosition())
+        .sort(
+            (a, b) => (
+              Math.abs(parseFloat(a.top?.toString() ?? "0") - 50)
+              + Math.abs(parseFloat(a.left?.toString() ?? "0") - 50)
+              - Math.abs(parseFloat(b.top?.toString() ?? "0") - 50)
+              + Math.abs(parseFloat(b.left?.toString() ?? "0") - 50)
+            )
+        ),
+    []
+  );
   
   const [currentIndex, setCurrentIndex] = useState(0);
   
@@ -26,7 +40,7 @@ function StarGazer() {
   }, [currentIndex, starCount]);
 
   return (
-    <div className="star-gazer" style={{ transform }} >
+    <div className="star-gazer" style={starBackgroundState} >
       {star.slice(0, currentIndex).map((style, i) => (
         <div key={i} style={{...style, ...((i + 1) < currentIndex ? { transform: style.transform, opacity: 1 } : { transform: "translate(0%, 0%)", opacity: 0 })}}>
         </div>
