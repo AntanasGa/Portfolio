@@ -15,7 +15,7 @@ export interface IStarBackgroundReducer {
 export const starBackgroundInitializer = createReducerInitializer({
   state(): IStarBackgroundReducer {
     return {
-      transform: "scale(1.5) translate(0%, 0%)"
+      transform: "scale(1.2) translate(0%, 0%)"
     };
   },
   actions: {
