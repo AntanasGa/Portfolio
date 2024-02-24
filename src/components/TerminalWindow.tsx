@@ -34,13 +34,13 @@ function TerminalWindow() {
             return;
           }
 
-          clearInterval(timer);
+          clearTimeout(timer);
         },
         65
       );
 
       return () => {
-        clearInterval(timer);
+        clearTimeout(timer);
       };
     },
     [visable, currentIndex, commands, symbolIndex]

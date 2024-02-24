@@ -21,7 +21,7 @@ $pallet-secondary: #875ada;
         -3rem 4rem 2rem -4rem $pallet-primary,
         0rem 2.5rem 2rem -3rem $pallet-primary;
     
-    backdrop-filter: blur(#{$size-24});
+    backdrop-filter: blur(#{$size-2});
 
     & > img {
         width: 100%;

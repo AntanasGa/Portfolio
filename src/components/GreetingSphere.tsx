@@ -1,4 +1,3 @@
-import React from 'react';
 import { HOST } from '~/util/cdn/constants';
 
 function GreetingSphere() {

@@ -12,6 +12,7 @@ import RouteLocalePathPickerMiddleware from './routing/middleware/RouteLocalePat
 import Locale$Index from './routing/:locale/index.tsx';
 import CatchAllMiddleware from './routing/middleware/CatchAllMiddleware.tsx';
 import LoaderFallback from './components/LoaderFallback.tsx';
+import StarGazer from './components/StarGazer.tsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
             // start reducer as well
             element: (
               <Reducers>
+                <StarGazer />
                 <Suspense fallback={ <LoaderFallback /> }>
                   <DataFetchMiddleware>
                     <RootLocaleSetterMiddleware />
