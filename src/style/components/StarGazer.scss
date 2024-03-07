@@ -9,14 +9,5 @@
     overflow: hidden;
     z-index: -1;
     transition: all $transition-speed-slow;
-
-    &>div {
-        position: absolute;
-        border-radius: 50%;
-        width: 3px;
-        height: 3px;
-        background-color: #fff;
-        transition-property: transform, opacity;
-        transition-timing-function: ease-out;
-    }
+    object-fit: cover;
 }

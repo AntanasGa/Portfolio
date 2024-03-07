@@ -1,51 +1,77 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { StarBackgroundStateContext } from "~/reducers/starbackground";
-import { getStarPosition } from "~/util/dom/StarPosition";
+import StarElement from "~/util/dom/StarElement";
 
 function StarGazer() {
-  const starCount = 200;
+  const starCount = 1000;
+  const scale = 30;
 
   const starBackgroundState = useContext(StarBackgroundStateContext);
 
-  const star = useMemo(
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const activeCount = useRef(1);
+
+  const starPositions = useMemo(
     () =>
       new Array(starCount)
         .fill(undefined)
-        .map(() => getStarPosition())
+        .map(() => new StarElement(scale))
         .sort(
-            (a, b) => (
-              Math.abs(parseFloat(a.top?.toString() ?? "0") - 50)
-              + Math.abs(parseFloat(a.left?.toString() ?? "0") - 50)
-              - Math.abs(parseFloat(b.top?.toString() ?? "0") - 50)
-              + Math.abs(parseFloat(b.left?.toString() ?? "0") - 50)
-            )
-        ),
+          (a, b) =>
+          (
+            (Math.abs((a.y / scale) - 50) + Math.abs((a.x / scale) - 50))
+            - (Math.abs((b.y / scale) - 50) + Math.abs((b.x / scale) - 50))
+          )
+        )
+    ,
     []
   );
-  
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  useEffect(() => {
-    const interval = setTimeout(() => {
-      if (currentIndex > starCount) {
-        clearTimeout(interval);
+
+  useEffect(
+    () => {
+      const canvas = canvasRef.current;
+      if (!canvas) {
         return;
       }
-      setCurrentIndex((currentIndex + 1));
-    }, 50);
 
-    return () => {
-      clearTimeout(interval);
-    };
-  }, [currentIndex, starCount]);
+      const ctx = canvas.getContext("2d", { alpha: false });
+      if (!ctx) {
+        return;
+      }
+
+      let reset: number;
+      let date = Date.now();
+
+      const render = () => {
+        if (Date.now() - date > 25 && activeCount.current < starCount) {
+
+          date = Date.now();
+          activeCount.current += 1;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < activeCount.current; i++) {
+          starPositions[i].step(ctx);
+        }
+
+        if (activeCount.current < starCount || !starPositions.every((x) => x.end)) {
+          reset = requestAnimationFrame(render);
+          return;
+        }
+      };
+
+      reset = requestAnimationFrame(render);
+
+      return () => {
+        cancelAnimationFrame(reset);
+      };
+    },
+    [starPositions]
+  );
 
   return (
-    <div className="star-gazer" style={starBackgroundState} >
-      {star.slice(0, currentIndex).map((style, i) => (
-        <div key={i} style={{...style, ...((i + 1) < currentIndex ? { transform: style.transform, opacity: 1 } : { transform: "translate(0%, 0%)", opacity: 0 })}}>
-        </div>
-      ))}
-    </div>
+    <canvas className="star-gazer" ref={canvasRef} style={starBackgroundState} width={scale * 100} height={scale * 100} />
   );
 }
 
