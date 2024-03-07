@@ -16,18 +16,10 @@
 
   color-scheme: dark;
 
-  background-color: $darkBackground;
-  color: $darkText;
-  --animation-translucent-color: #{$darkAnimationTranslucentColor};
-  --text-color: #{$darkText};
-}
-
-:root.#{$lightClassName} {
-  color-scheme: light;
-  color: $lightText;
-  background-color: $lightBackground;
-  --animation-translucent-color: #{$lightAnimationTranslucentColor};
-  --text-color: #{$lightText};
+  background-color: $background-color;
+  color: $text-color;
+  --animation-translucent-color: #{$animation-translucent-color};
+  --text-color: #{$text-color};
 }
 
 a {
@@ -64,17 +56,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
