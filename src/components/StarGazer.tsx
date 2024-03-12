@@ -16,13 +16,7 @@ function StarGazer() {
       new Array(starCount)
         .fill(undefined)
         .map(() => new StarElement(scale))
-        .sort(
-          (a, b) =>
-          (
-            (Math.abs((a.y / scale) - 50) + Math.abs((a.x / scale) - 50))
-            - (Math.abs((b.y / scale) - 50) + Math.abs((b.x / scale) - 50))
-          )
-        )
+        .sort((a, b) => a.distance - b.distance)
     ,
     []
   );

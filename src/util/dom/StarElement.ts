@@ -14,6 +14,8 @@ export default class StarElement {
   private opacityStep: number;
   private opacity: number;
 
+  private _distance: number;
+
   get x() {
     return this._x;
   }
@@ -26,16 +28,22 @@ export default class StarElement {
     return this.currentStep >= this.steps;
   }
 
+  get distance() {
+    return this._distance;
+  }
+
   constructor(scale: number) {
     this._x = random(5 * scale, 95 * scale) + (random(0, 999) / 1000);
     this._y = random(5 * scale, 95 * scale) + (random(0, 999) / 1000);
+    this._distance = Math.abs((this.y / scale) - 50) + Math.abs((this.x / scale) - 50);
+
     const distance = random(40, 100);
     this.maxOpacity = distance / 100;
-    const unsetStep = (random(50, 800) * this.maxOpacity * this.maxOpacity ) / (100 * scale);
+    const unsetStep = (random(50, 500) * this.maxOpacity * this.maxOpacity ) / (100 * scale);
     this.cordStepX = unsetStep;
     this.cordStepY = unsetStep;
     this.setCordStepDirection(scale);
-    this.steps = random(500, 800);
+    this.steps = Math.floor(random(500, 800) * (100 - this._distance) / 40);
     this.opacityStep = (1 / this.steps) * this.maxOpacity;
     this.opacity = this.opacityStep;
   }
