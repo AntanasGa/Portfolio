@@ -7,33 +7,18 @@ export default function LoaderFallback() {
       <svg viewBox="0 0 64 64" style={{ width: "8rem" }}>
         <title>{t("contentLoader")}</title>
         <defs>
-          <linearGradient id="globalGradient" x1="0%" x2="100%" y1="0%" y2="112.5%" gradientUnits="userSpaceOnUse">
-            <stop offset="-40%" style={{ stopColor: "var(--animation-translucent-color)" }}>
-              <animate
-                attributeName="offset"
-                from="-30%"
-                to="90%"
-                dur="2s"
-                repeatCount="indefinite"
-              />
+          <linearGradient id="globalGradient" x1="0%" x2="100%" y1="0%" y2="125%" gradientTransform="scale(1.4)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="var(--animation-translucent-color)">
+               <animate attributeName="offset" values="0;0.8" dur="2s" repeatCount="indefinite"  /> 
             </stop>
-            <stop offset="-5%" style={{ stopColor: "#fff", stopOpacity: "0.7" }}>
-              <animate
-                attributeName="offset"
-                values="0; 1"
-                keyTimes="0; 1"
-                dur="2s"
-                repeatCount="indefinite"
-              />
+            <stop offset="0" stopColor="#ffffffB2">
+               <animate attributeName="offset" values="0;0.9" dur="2s" repeatCount="indefinite"  /> 
             </stop>
-            <stop offset="0%" style={{ stopColor: "var(--animation-translucent-color)" }}>
-            <animate
-                attributeName="offset"
-                from="-3%"
-                to="78%"
-                dur="2s"
-                repeatCount="indefinite"
-              />
+            <stop offset="0.1" stopColor="rgba(255, 255, 255, 0.3)">
+                <animate attributeName="offset" values="0.1;1" dur="2s" repeatCount="indefinite"  /> 
+            </stop>
+            <stop offset="0.1" stopColor="var(--animation-translucent-color)">
+                <animate attributeName="offset" values="0.2;1" dur="2s" repeatCount="indefinite"  /> 
             </stop>
           </linearGradient>
         </defs>
