@@ -1,3 +1,5 @@
+import { LANGUAGE_MAP } from "~/translations/config";
+
 export const getCookies = () => {
   const result: Record<string, string> = {};
   return document?.cookie.split("; ").map(x => x.split("=", 2)).reduce((acc, [k, v]) => (acc[k] = v, acc), result);
@@ -60,3 +62,8 @@ export const setCookie = ({name, value, path, sameSite, secure, expires, maxAge}
 export const resetCookie = (name: string) => {
   setCookie({name, value: "", expires: new Date(0)});
 };
+
+
+export const setLocaleCookie = (locale: keyof typeof LANGUAGE_MAP) => {
+  setCookie({ name: "locale", value: locale, path: "/", sameSite: "lax" });
+}

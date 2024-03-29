@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Outlet, useLocation, useNavigate, useRouteError } from "react-router-dom";
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from "~/translations/config";
 import { firstOrUndefinedOf } from "~/util/array/Selector";
-import { getCookies, setCookie } from "~/util/dom/cookie";
+import { getCookies, setLocaleCookie } from "~/util/dom/cookie";
 
 function RootLocaleSetterMiddleware() {
   const error = useRouteError();
@@ -14,10 +14,10 @@ function RootLocaleSetterMiddleware() {
 
   useEffect(() => {
     const { locale = "" } = getCookies();
-    const selectedLanguage = (firstOrUndefinedOf(LANGUAGE_LIST.filter(x => x.toLowerCase() === locale.toLowerCase())) ?? DEFAULT_LANGUAGE).toLowerCase();
+    const selectedLanguage = firstOrUndefinedOf(LANGUAGE_LIST.filter(x => x.toLowerCase() === locale.toLowerCase())) ?? DEFAULT_LANGUAGE;
     
     if (locale.toLocaleLowerCase() !== selectedLanguage) {
-      setCookie({ name: "locale", value: selectedLanguage, path: "/", sameSite: "lax" });
+      setLocaleCookie(selectedLanguage);
     }
 
     i18n.changeLanguage(selectedLanguage);
