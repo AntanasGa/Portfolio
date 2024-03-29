@@ -1,7 +1,10 @@
 import { SharedNamespace } from "./types";
 
-const en: SharedNamespace = {
+const lt: SharedNamespace = {
+    language: "Kalba",
     contentLoader: "Ruošiamas turinys",
+    uiColapse: "Suskleisti",
+    uiExpand: "Išskleisti",
 };
 
-export default en;
+export default lt;

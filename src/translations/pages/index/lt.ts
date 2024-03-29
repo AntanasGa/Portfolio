@@ -1,7 +1,7 @@
 import { IndexPageNamespace } from "./types";
 
 const lt: IndexPageNamespace = {
-  hello: "labas",
+  routeName: "Apie mane",
   linkToOrigins: "Nuoroda į resursą",
   name: "Vardas",
   technologies: "Technologijos",
