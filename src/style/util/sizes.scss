@@ -1,11 +1,13 @@
-.w-screen {
+.w- {
+  &screen {
     width: $size-screen-width;
+  }
 }
 
 .m {
-    &b {
-        &-16 {
-            margin-bottom: $size-16;
-        }
+  &b- {
+    &16 {
+      margin-bottom: $size-16;
     }
+  }
 }
