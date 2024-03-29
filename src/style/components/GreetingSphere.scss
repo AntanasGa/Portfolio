@@ -1,5 +1,3 @@
-$pallet-primary: #31b0b9;
-$pallet-secondary: #875ada;
 .greeting-sphere {
     position: relative;
     display: flex;
@@ -18,8 +16,8 @@ $pallet-secondary: #875ada;
     box-shadow:
         inset -1rem 2rem 3rem -2rem $pallet-secondary,
         3.5rem -4.5rem 2rem -5rem $pallet-secondary,
-        -3rem 4rem 2rem -4rem $pallet-primary,
-        0rem 2.5rem 2rem -3rem $pallet-primary;
+        -3rem 4rem 2rem -4rem hsl($pallet-primary),
+        0rem 2.5rem 2rem -3rem hsl($pallet-primary);
     
     backdrop-filter: blur(#{$size-2});
 
@@ -40,7 +38,7 @@ $pallet-secondary: #875ada;
         height: 100%;
         border-radius: 50%;
         transform: translate(-50%, -50%) scale(0.995);
-        box-shadow: inset 4.5rem -5rem 2rem -5.5rem $pallet-primary;
+        box-shadow: inset 4.5rem -5rem 2rem -5.5rem hsl($pallet-primary);
         animation: greeting-sphere__shadow--after $transition-speed-slower, greeting-sphere__shadow--after-jitter $transition-speed-slowest $transition-speed-slower infinite alternate;
     }
 }
@@ -50,33 +48,33 @@ $pallet-secondary: #875ada;
         box-shadow:
             inset -1rem -1rem 3rem -5rem $pallet-secondary,
             -2.5rem -2rem 2rem -5rem $pallet-secondary,
-            0.5rem 2rem 2rem -4rem $pallet-primary,
-            1rem -1rem 2rem -3rem $pallet-primary;
+            0.5rem 2rem 2rem -4rem hsl($pallet-primary),
+            1rem -1rem 2rem -3rem hsl($pallet-primary);
     }
     to {
         box-shadow:
             inset -1rem 2rem 3rem -2rem $pallet-secondary,
             3.5rem -4.5rem 2rem -5rem $pallet-secondary,
-            -3rem 4rem 2rem -4rem $pallet-primary,
-            0rem 2.5rem 2rem -3rem $pallet-primary;
+            -3rem 4rem 2rem -4rem hsl($pallet-primary),
+            0rem 2.5rem 2rem -3rem hsl($pallet-primary);
     }
 }
 
 @keyframes greeting-sphere__shadow--after {
     from {
-        box-shadow: inset 3rem 3rem 3rem -8rem $pallet-primary;
+        box-shadow: inset 3rem 3rem 3rem -8rem hsl($pallet-primary);
     }
     to {
-        box-shadow: inset 4.5rem -5rem 2rem -5.5rem $pallet-primary;
+        box-shadow: inset 4.5rem -5rem 2rem -5.5rem hsl($pallet-primary);
     }
 }
 
 @keyframes greeting-sphere__shadow--after-jitter {
     from {
-        box-shadow: inset 4.5rem -5rem 2rem -5.5rem $pallet-primary;
+        box-shadow: inset 4.5rem -5rem 2rem -5.5rem hsl($pallet-primary);
     }
     to {
-        box-shadow: inset 4.25rem -5.5rem 2rem -5.5rem $pallet-primary;
+        box-shadow: inset 4.25rem -5.5rem 2rem -5.5rem hsl($pallet-primary);
     }
 }
 

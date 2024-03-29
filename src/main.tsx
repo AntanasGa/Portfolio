@@ -13,6 +13,11 @@ import Locale$Index from './routing/:locale/index.tsx';
 import CatchAllMiddleware from './routing/middleware/CatchAllMiddleware.tsx';
 import LoaderFallback from './components/LoaderFallback.tsx';
 import StarGazer from './components/StarGazer.tsx';
+import { createPortal } from 'react-dom';
+import NavSelector from './components/Navigation/NavSelector.tsx';
+import Locale$Projects from './routing/:locale/projects.tsx';
+
+const bottomPortal = document.getElementById('bottom-bar-portal-root')!;
 
 const router = createBrowserRouter([
   {
@@ -32,6 +37,7 @@ const router = createBrowserRouter([
                   <DataFetchMiddleware>
                     <RootLocaleSetterMiddleware />
                   </DataFetchMiddleware>
+                  { createPortal(<NavSelector />, bottomPortal) }
                 </Suspense>
               </Reducers>
             ),
@@ -45,8 +51,8 @@ const router = createBrowserRouter([
                     element: <Locale$Index />,
                   },
                   {
-                    path: "e",
-                    element: <LoaderFallback />
+                    path: "projects",
+                    element: <Locale$Projects />
                   }
                 ],
               }
