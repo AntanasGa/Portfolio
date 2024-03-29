@@ -3,6 +3,7 @@ import { IContentTagItem } from "~/reducers/manifest";
 import { HOST } from "~/util/cdn/constants";
 import { useMemo } from "react";
 import hexColorParser from "~/util/string/HexColorParser";
+import { LinkIcon } from "./Icons";
 
 export default function ArticleTag({ item }: { item: IContentTagItem }) {
   const { t } = useTranslation("pages", { keyPrefix: "index" });
@@ -24,7 +25,7 @@ export default function ArticleTag({ item }: { item: IContentTagItem }) {
       </button>
       { item.href &&
         <a title={ t("linkToOrigins") } href={ item.href } target="_blank" rel="noreferrer noopener" >
-          <img src="/assets/link.svg" className="icon mono" />
+          <LinkIcon />
         </a>
       }
     </div>
