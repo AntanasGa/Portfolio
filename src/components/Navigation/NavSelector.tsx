@@ -37,7 +37,8 @@ export default function NavSelector() {
   useEffect(
     () => {
       const onResize = () => {
-        setNavBarHeight(navBar.current?.scrollHeight ?? 0);
+        // scrollOffset is always negative, thus subtraction
+        setNavBarHeight((navBar.current?.scrollHeight ?? 0) - scrollOffset);
         setElHeight(navElement.current?.scrollHeight ?? 0);
         setNavWidth(navBar.current?.scrollWidth ?? 0);
       };
@@ -48,7 +49,7 @@ export default function NavSelector() {
       
       return () => window.removeEventListener("resize", onResize);
     },
-    []
+    [scrollOffset]
   );
 
   useEffect(
