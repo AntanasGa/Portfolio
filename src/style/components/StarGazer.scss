@@ -8,6 +8,6 @@
     height: $size-screen-height;
     overflow: hidden;
     z-index: -1;
-    transition: all $transition-speed-slow;
+    transition: transform $transition-speed-slow;
     object-fit: cover;
 }
