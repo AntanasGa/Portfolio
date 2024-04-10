@@ -25,6 +25,7 @@ export default function NavSelector() {
 
   const navElement = useRef<HTMLLIElement>(null);
   const navBar = useRef<HTMLElement>(null);
+  const lastRoute = useRef<string | null>(null);
   
   const currentRoute = useMemo(() => ({["/" + (pathname.substring(1).split("/")[1] ?? "")]: true}), [pathname]);
   
@@ -54,6 +55,13 @@ export default function NavSelector() {
 
   useEffect(
     () => {
+      // prevents double settting / resetting offset to 0
+      const selectedRoute = Object.keys(currentRoute)[0];
+      if (lastRoute.current === selectedRoute) {
+        return;
+      }
+      lastRoute.current = selectedRoute;
+
       setScrollOffset(0 - (navBar.current?.querySelector<HTMLLIElement>("li.active")?.offsetTop ?? 0));
     },
     [currentRoute]
