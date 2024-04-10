@@ -19,8 +19,9 @@
         -3rem 4rem 2rem -4rem hsl($pallet-primary),
         0rem 2.5rem 2rem -3rem hsl($pallet-primary);
     
-    backdrop-filter: blur(#{$size-2});
-
+    backdrop-filter: blur($size-2);
+    -webkit-backdrop-filter: blur($size-2);
+    
     & > img {
         width: 100%;
         transform: scale(0.75);

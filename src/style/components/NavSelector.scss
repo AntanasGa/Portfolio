@@ -9,6 +9,7 @@
       white-space: nowrap;
       transition: all $transition-speed-normal;
       backdrop-filter: blur($size-4);
+      -webkit-backdrop-filter: blur($size-4);
       background-color: #ffffff10;
       
       .navWrapper {
