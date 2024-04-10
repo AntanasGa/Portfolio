@@ -11,6 +11,7 @@ import CatchAllMiddleware from './routing/middleware/CatchAllMiddleware.tsx';
 import LoaderFallback from './components/LoaderFallback.tsx';
 import Locale$Projects from './routing/:locale/projects.tsx';
 import Index from './routing/index.tsx';
+import Projects$Resource from './routing/:locale/projects/:resource.tsx';
 
 
 const router = createBrowserRouter([
@@ -35,10 +36,14 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "projects",
-                    element: <Locale$Projects />
-                  }
-                ],
-              }
+                    element: <Locale$Projects />,
+                  },
+                  {
+                    path: "projects/:resource",
+                    element: <Projects$Resource />,
+                  },
+                  ],
+                },
             ],
           },
           {
