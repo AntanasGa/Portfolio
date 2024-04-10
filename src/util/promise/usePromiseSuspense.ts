@@ -48,6 +48,10 @@ export default function usePromiseSuspense<T>(promise: () => Promise<T>, dependa
     .then(r => cacheValue.resolve = r)
     .catch(err => cacheValue.reject = err)
 
+    if (dependancies) {
+      cacheValue.dependancies = dependancies;
+    }
+
     cache.set(callstack, cacheValue);
   }
   const innerPromise = cache.get(callstack) as ICacheItem<T>;
