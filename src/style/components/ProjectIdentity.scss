@@ -1,0 +1,34 @@
+.project-identity {
+  display: flex;
+  gap: $size-10;
+  padding: $size-6;
+  padding-left: $size-18;
+  transition: background-color $transition-speed-normal;
+  align-items: center;
+
+  &:hover {
+    background: $pallet-primary-focus;
+  }
+
+  &__image {
+    height: $size-24;
+    aspect-ratio: 1;
+    border-color: transparent;
+  }
+
+  &__details {
+    h2 {
+      font-size: $size-9;
+    }
+  
+    p {
+      margin-bottom: $size-6;
+      font-size: $size-8;
+    }
+  
+    div {
+      display: flex;
+      gap: $size-6;
+    }
+  }
+}
