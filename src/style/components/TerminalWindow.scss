@@ -15,6 +15,10 @@
         border-top-right-radius: $size-4;
         user-select: none;
 
+        & > .terminal__path {
+            font-size: 1rem;
+        }
+
         & > .terminal__actions {
             display: flex;
             gap: $size-2;
