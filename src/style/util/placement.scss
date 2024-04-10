@@ -16,8 +16,15 @@
   }
 }
 
+@include media-medium() {
+  .container-md {
+    max-width: $breakpoint-medium;
+    margin: 0 auto;
+  }
+}
+
 @include media-large() {
-  .container-xl {
+  .container-lg {
     max-width: $breakpoint-large;
     margin: 0 auto;
   }

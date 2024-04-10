@@ -14,7 +14,7 @@ function Locale$Index() {
     <div className="place--center w-screen mb-16">
       <GreetingSphere />
     </div>
-    <div className="container-xl container-place--right">
+    <div className="container-lg container-place--right">
       <TerminalWindow />
     </div>
     </>
