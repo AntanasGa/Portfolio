@@ -23,7 +23,8 @@ export interface IContentTagItem {
 
 export interface IManifestReducer {
   content: IContentItem[],
-  tags: Record<number, IContentTagItem>
+  tags: Record<number, IContentTagItem>,
+  loaded: boolean,
 }
 
 
@@ -32,11 +33,12 @@ export const manifestInitializer = createReducerInitializer({
     return {
       content: [],
       tags: {},
+      loaded: false,
     };
   },
   actions: {
-    fullSet(items: IManifestReducer) {
-      return items;
+    fullSet(items: Omit<IManifestReducer, "loaded">) {
+      return { ...items, loaded: true };
     }
   }
 });

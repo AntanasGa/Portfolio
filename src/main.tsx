@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import RootErrorBoundry from './components/RootErrorBoundry.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -12,6 +12,7 @@ import LoaderFallback from './components/LoaderFallback.tsx';
 import Locale$Projects from './routing/:locale/projects.tsx';
 import Index from './routing/index.tsx';
 import Projects$Resource from './routing/:locale/projects/:resource.tsx';
+import ProjectLookupMiddleware from './routing/middleware/projects/ProjectLookupMiddleware.tsx';
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,17 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "projects/:resource",
-                    element: <Projects$Resource />,
+                    element: <ProjectLookupMiddleware />,
+                    children: [
+                      {
+                        index: true,
+                        element: (
+                        <Suspense fallback={ <LoaderFallback /> }>
+                          <Projects$Resource />
+                        </Suspense>
+                        ) 
+                      }
+                    ]
                   },
                   ],
                 },
