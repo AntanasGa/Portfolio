@@ -1,0 +1,53 @@
+.projects-window {
+  backdrop-filter: blur($size-2);
+  -webkit-backdrop-filter: blur($size-2);
+  background: #ffffff10;
+  border-radius: $size-6;
+  display: flex;
+  flex-direction: column;
+  animation: terminal__fade-in $transition-speed-normal;
+
+
+  &__header {
+    display: flex;
+    gap: $size-8;
+    padding: $size-8;
+    border-bottom: 1px solid #333;
+
+    svg {
+      width: $size-28;
+      height: $size-28;
+    }
+
+    h1 {
+      font-size: $size-11;
+    }
+  }
+
+  &__body {
+    max-height: $size-screen-height-half;
+    overflow-y: auto;
+
+    li > a {
+      text-decoration: none;
+    }
+  }
+
+  &__footer button {
+    width: $size-full;
+    border-radius: 0;
+    border-bottom-left-radius: $size-6;
+    border-bottom-right-radius: $size-6;
+    border: none;
+
+    &:hover, &:focus {
+      background: $pallet-primary-focus;
+      outline: none;
+      border: none;
+    }
+    
+    &:active {
+      background: $pallet-primary-active;
+    }
+  }
+}
