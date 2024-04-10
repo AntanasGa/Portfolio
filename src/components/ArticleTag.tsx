@@ -1,12 +1,9 @@
-import { useTranslation } from "react-i18next";
 import { IContentTagItem } from "~/reducers/manifest";
 import { HOST } from "~/util/cdn/constants";
 import { useMemo } from "react";
 import hexColorParser from "~/util/string/HexColorParser";
-import { LinkIcon } from "./Icons";
 
 export default function ArticleTag({ item }: { item: IContentTagItem }) {
-  const { t } = useTranslation("pages", { keyPrefix: "index" });
   const paragraphStyle = useMemo(
     () => {
       const val = hexColorParser(item.background ?? "FFFFFF");
@@ -16,18 +13,11 @@ export default function ArticleTag({ item }: { item: IContentTagItem }) {
     [ item ]
   );
   return (
-    <div className="tag">
-      <button style={ paragraphStyle }>
+    <div className="tag" style={ paragraphStyle }>
         { item.logo &&
           <img src={ (new URL(item.logo, HOST)).toString() } />
         }
-        <span>{ item.type }</span>
-      </button>
-      { item.href &&
-        <a title={ t("linkToOrigins") } href={ item.href } target="_blank" rel="noreferrer noopener" >
-          <LinkIcon />
-        </a>
-      }
+        <span>{ item.name }</span>
     </div>
   );
 }
