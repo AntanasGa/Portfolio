@@ -9,10 +9,18 @@
   transition-duration: $transition-speed-fast;
   outline: 0.1rem solid rgba(var(--background-color), 0.2);
   background-color: rgba(var(--background-color), 0.2);
+  overflow: hidden;
+
+  span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
   &:hover {
     outline: 0.1rem solid rgba(var(--background-color), 0.3);
     background-color: rgba(var(--background-color), 0.3);
+    overflow: visible;
   }
 
   &>img {
@@ -20,27 +28,22 @@
     height: $size-10;
   }
 
-    &.active button {
+  & button {
+    border: none;
+    display: flex;
+
+    align-items: center;
+    height: $size-12;
+
+    &:hover,
+    &:focus {
+        outline: 1px solid rgba(var(--background-color), 0.8);
+        background-color: rgba(var(--background-color), 0.5);
     }
-
-    & button {
-        border: none;
-        display: flex;
-
-        align-items: center;
-        height: $size-12;
-
-        &:hover,
-        &:focus {
-            outline: 1px solid rgba(var(--background-color), 0.8);
-            background-color: rgba(var(--background-color), 0.5);
-        }
+  }
 
 
-    }
-
-
-    &>a {
-        filter: invert(50%);
-    }
+  & > a {
+    filter: invert(50%);
+  }
 }

@@ -17,6 +17,8 @@
   }
 
   &__details {
+    overflow: hidden;
+    
     h2 {
       font-size: $size-9;
     }
