@@ -1,0 +1,10 @@
+.project-window {
+    overflow: auto;
+  
+    .project-window__header {
+      border-bottom: 1px solid #333;
+      margin-bottom: 0.6rem;
+      position: sticky;
+      top: 0;
+    }
+  }

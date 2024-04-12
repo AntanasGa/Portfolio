@@ -11,7 +11,7 @@ interface MarkdownSectionProps extends ITestableComponent {
 function MarkdownSection({ markdown, config, testId }: MarkdownSectionProps) {
   const items = useMemo(() => MdParser(markdown, config), [markdown, config]);
   return (
-    <section style={{ width: "100vw" }} data-testid={testId}>{ items }</section>
+    <section data-testid={testId}>{ items }</section>
   );
 }
 
