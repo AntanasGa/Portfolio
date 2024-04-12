@@ -8,7 +8,7 @@ export interface IContentItem {
   name: Record<keyof typeof LANGUAGE_MAP, string>,
   resource: string,
   activeSince: number,
-  thumbnail?: string,
+  thumbnail?: boolean,
   audible?: Record<keyof typeof LANGUAGE_MAP, string>,
 }
 

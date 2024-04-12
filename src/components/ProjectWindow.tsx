@@ -18,15 +18,14 @@ export default function ProjectWindow({ project }: ProjectWindowProps) {
 
   const content = usePromiseSuspense(
     async () => {
-      const res = await fetch(new URL(project.resource ?? "", CONTENT).toString());
-      if (res.status !== 200) {
+      const resource = (project.resource ?? "") + `/${language}.md`;
+
+      const res = await fetch(new URL(resource, CONTENT).toString());
+      const contentType = res.headers.get("content-type");
+      if (res.status !== 200 || !contentType || !contentType.includes("text/markdown")) {
         throw new RouterError("Route not found", 404);
       }
 
-      const contentType = res.headers.get("content-type");
-      if (!contentType || !contentType.includes("text/markdown")) {
-        throw new Error("Invalid content type");
-      }
       return await res.text();
     },
     [project.resource, language]

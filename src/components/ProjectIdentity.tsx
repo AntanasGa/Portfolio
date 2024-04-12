@@ -19,15 +19,17 @@ export default function ProjectIdentity({ project, disableHover }: ProjectIdenti
     [disableHover]
   );
 
+  const thumbnail = useMemo(() => project?.thumbnail ? project.resource + "/thumbnail.ico" : undefined, [project]);
+
   if (!project) {
     return null;
   }
 
   return (
     <div className={ baseClassName }>
-      { project.thumbnail
+      { thumbnail
         ? <img className="project-identity__image"
-            src={new URL(project.thumbnail, CONTENT).toString()}
+            src={new URL(thumbnail, CONTENT).toString()}
             alt={project.name[language]}
           />
         : <div className="project-identity__image"></div>
