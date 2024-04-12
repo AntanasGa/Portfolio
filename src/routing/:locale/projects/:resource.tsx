@@ -13,7 +13,7 @@ export default function Projects$Resource() {
   const starBackgroundSetter = useContext(StarBackgroundReducerContext);
   const manifestState = useContext(ManifestStateContext);
   const { resource } = useParams();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "projects" });
   const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
   const project = useMemo(
@@ -41,7 +41,7 @@ export default function Projects$Resource() {
           <div></div>
           <div className="terminal__path">{ project?.name[language] ?? "" }</div>
           <div className="terminal__actions">
-            <NavLink to={ `/${language}/projects` } className="terminal__button" />
+            <NavLink to={ `/${language}/projects` } className="terminal__button" title={ t("returnButton")} />
           </div>
         </div>
         { project
