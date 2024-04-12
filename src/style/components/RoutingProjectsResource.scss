@@ -1,0 +1,19 @@
+.projects-resource {
+  height: 80vh;
+
+  .terminal {
+    &__actions {
+      & > * {
+        &:last-child {
+          padding: 0;
+          transition: background $transition-speed-fast;
+          background: #f44;
+  
+          &:hover {
+            background: #f66;
+          }
+        }
+      }
+    }
+  }
+}

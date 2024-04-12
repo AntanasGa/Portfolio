@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import RootErrorBoundry from './components/RootErrorBoundry.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -45,11 +45,7 @@ const router = createBrowserRouter([
                     children: [
                       {
                         index: true,
-                        element: (
-                        <Suspense fallback={ <LoaderFallback /> }>
-                          <Projects$Resource />
-                        </Suspense>
-                        ) 
+                        element: <Projects$Resource />,
                       }
                     ]
                   },

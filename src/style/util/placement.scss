@@ -22,6 +22,14 @@
   }
 }
 
+@include media-extra-large() {
+  .container-xl {
+    max-width: $breakpoint-extra-large;
+    margin: 0 auto;
+  }
+}
+
+
 .place--center {
   display: flex;
   justify-content: center;
