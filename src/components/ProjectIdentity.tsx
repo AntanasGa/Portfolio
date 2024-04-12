@@ -1,21 +1,30 @@
-import { IContentItem, IContentTagItem } from '~/reducers/manifest';
 import ArticleTag from './ArticleTag';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGE_MAP } from '~/translations/config';
 import { CONTENT } from '~/util/cdn/constants';
-
-type TaggedContentItem = Omit<IContentItem, "tags"> & { tags: IContentTagItem[] };
+import { useMemo } from 'react';
+import { TaggedContentItem } from './types';
 
 interface ProjectIdentityProps {
-  project: TaggedContentItem;
+  project?: TaggedContentItem;
+  disableHover?: boolean;
 }
 
-export default function ProjectIdentity({ project }: ProjectIdentityProps) {
+export default function ProjectIdentity({ project, disableHover }: ProjectIdentityProps) {
   const { i18n } = useTranslation();
   const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
+  const baseClassName = useMemo(
+    () => ["project-identity", ...(disableHover ? ["no-hover"] : [])].join(" "),
+    [disableHover]
+  );
+
+  if (!project) {
+    return null;
+  }
+
   return (
-    <div className="project-identity">
+    <div className={ baseClassName }>
       { project.thumbnail
         ? <img className="project-identity__image"
             src={new URL(project.thumbnail, CONTENT).toString()}
