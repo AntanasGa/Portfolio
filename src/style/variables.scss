@@ -44,3 +44,6 @@ $pallet-secondary: #956ddf;
 $pallet-primary-active: hsl($pallet-primary);
 $pallet-primary-focus: hsl(list.nth($pallet-primary, 1), list.nth($pallet-primary, 2), list.nth($pallet-primary, 3) - 20%);
 $pallet-primary-active-focus: hsl(list.nth($pallet-primary, 1), list.nth($pallet-primary, 2), list.nth($pallet-primary, 3) + 5%);
+
+$pallet-terminal-header: #474747;
+$pallet-terminal-body: #232323;

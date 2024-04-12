@@ -6,5 +6,67 @@
       margin-bottom: 0.6rem;
       position: sticky;
       top: 0;
+      /* code overlaps header */
+      z-index: 1;
+    }
+
+    section {
+      margin: $size-8;
+      line-height: 1.4;
+
+      h1, h2, h3, h4, h5, h6 {
+        margin-bottom: $size-4;
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: $size-16;
+      }
+
+      h3 {
+        font-size: $size-10;
+      }
+
+      ol, li {
+        margin-left: $size-10;
+      }
+
+      ol {
+        list-style: decimal;
+      }
+
+      ul {
+        list-style: inside;
+      }
+
+      span, .code {
+        background: $pallet-terminal-body;
+        font-family: "Fira Mono", monospace;
+        border-radius: $size-4;
+      }
+
+      span {
+        padding: $size-2;
+        margin: 0 $size-2;
+      }
+
+      .code {
+        div:first-of-type {
+          width: 100%;
+          background: $pallet-terminal-header;
+          border-top-left-radius: $size-4;
+          border-top-right-radius: $size-4;
+          padding: $size-2;
+          padding-left: $size-6;
+          box-sizing: border-box;
+        }
+
+        & > pre {
+          max-width: 100%;
+          padding: $size-6;
+          padding-bottom: $size-8;
+          overflow-x: auto;
+        }
+      }
     }
   }
