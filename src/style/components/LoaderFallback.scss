@@ -1,0 +1,9 @@
+.loader-fallback {
+  display: flex;
+  margin: auto;
+
+  & > * {
+    margin: auto;
+    width: 8rem;
+  }
+}

@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 export default function LoaderFallback() {
   const { t } = useTranslation("shared");
   return (
-    <div className="p-full-center">
-      <svg viewBox="0 0 64 64" style={{ width: "8rem" }}>
+    <div className="loader-fallback">
+      <svg viewBox="0 0 64 64">
         <title>{t("contentLoader")}</title>
         <defs>
           <linearGradient id="globalGradient" x1="0%" x2="100%" y1="0%" y2="125%" gradientTransform="scale(1.4)" gradientUnits="userSpaceOnUse">
