@@ -62,6 +62,7 @@ export default function NavSelector() {
       }
       lastRoute.current = selectedRoute;
 
+      setNavWidth(navBar.current?.scrollWidth ?? 0);
       setScrollOffset(0 - (navBar.current?.querySelector<HTMLLIElement>("li.active")?.offsetTop ?? 0));
     },
     [currentRoute]
