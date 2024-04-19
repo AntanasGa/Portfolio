@@ -2,6 +2,7 @@ import { TokenHandlerTable } from "../types";
 import BlockQuoteToken from "./BlockQuoteToken";
 import CodeSpanToken from "./CodeSpanToken";
 import CodeToken from "./CodeToken";
+import DelToken from "./DelToken";
 import EmToken from "./EmToken";
 import HeadingToken from "./HeadingToken";
 import HtmlToken from "./HtmlToken";
@@ -31,6 +32,7 @@ const innerMapper: Partial<TokenHandlerTable> = {
   table: TableToken,
   text: TextToken,
   em: EmToken,
+  del: DelToken,
 }
 
 export const mapper = Object.freeze(innerMapper);
