@@ -51,11 +51,10 @@
 
       span {
         padding: $size-2;
-        margin: 0 $size-2;
       }
 
-      s {
-        margin-right: $size-2;
+      span, s, strong {
+        margin: 0 $size-2;
       }
 
       .code {
