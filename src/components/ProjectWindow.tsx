@@ -6,6 +6,7 @@ import { CONTENT } from "~/util/cdn/constants";
 import RouterError from "~/util/router/RouterError";
 import { useTranslation } from "react-i18next";
 import { LANGUAGE_MAP } from "~/translations/config";
+import { useMemo } from "react";
 
 interface ProjectWindowProps {
   project: TaggedContentItem;
@@ -16,11 +17,16 @@ export default function ProjectWindow({ project }: ProjectWindowProps) {
   const { i18n } = useTranslation();
   const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
+  const projectResource = useMemo(
+    () => new URL(((project.resource ?? "./") + "/").replace(/\/{2,}/, "/"), CONTENT),
+    [project.resource]
+  );
+
   const content = usePromiseSuspense(
     async () => {
-      const resource = (project.resource ?? "") + `/${language}.md`;
+      const localizedResource = new URL(`./${language}.md`, projectResource);
 
-      const res = await fetch(new URL(resource, CONTENT).toString());
+      const res = await fetch(localizedResource.toString());
       const contentType = res.headers.get("content-type");
       if (res.status !== 200 || !contentType || !contentType.includes("text/markdown")) {
         throw new RouterError("Route not found", 404);
@@ -36,7 +42,7 @@ export default function ProjectWindow({ project }: ProjectWindowProps) {
       <div className="project-window__header">
           <ProjectIdentity project={ project } disableHover />
       </div>
-      <MarkdownSection markdown={ content } />
+      <MarkdownSection markdown={ content } config={{ link: { baseUri: projectResource.toString() } }} />
     </div>
   );
 }
