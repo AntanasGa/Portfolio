@@ -10,8 +10,8 @@ function collectAttributes(attributes: string | undefined, key: string, config?:
   const result: Record<string, unknown> = {};
   attributes?.replace(/\s+/g, " ")
     .trim()
-    .split(" ")
-    .map(x => x.split("=", 2))
+    .match(/([^=\s]+=["']([^"']*)?["'])|([^=\s]+)/gm)
+    ?.map(x => x.split("=", 2))
     .reduce((acc, [k, v]) => {
       if (k.trim()) {
         acc[k] = v?.match(/^["']?([^"']*)["']?$/)?.[1] ?? ""

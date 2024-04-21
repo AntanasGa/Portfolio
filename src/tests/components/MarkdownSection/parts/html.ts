@@ -60,3 +60,21 @@ it.concurrent("Should block anchor on empty config list", ({ expect }) => {
   expect(htmlElementList.length).toBe(0);
   expect(section.innerHTML).toBe(`<${PARAGRAPH_HTML_TAG}>${inputHtml.replace(/</gm, "&lt;").replace(/>/gm, "&gt;")}</${PARAGRAPH_HTML_TAG}>`);
 });
+
+it.concurrent("Should work with image elements with multi word alt", ({ expect }) => {
+  const expectedTag = "img";
+  const multipleHelloContent = new Array(5).fill(helloContent).join(" ");
+  const { testId, render } = getRender(`<${expectedTag} alt="${multipleHelloContent}" />`);
+  const section = render.getByTestId(testId);
+  
+  const htmlElementList = Array.from(section.querySelectorAll(expectedTag) ?? []);
+  
+
+  expect(section).toBeDefined();
+  expect(Array.from(section.children).length).toBe(1);
+  
+  expect(htmlElementList.length).toBe(1);
+  const selectedElement = firstOrUndefinedOf(htmlElementList);
+  expect(selectedElement?.tagName.toLowerCase()).toBe(expectedTag);
+  expect(selectedElement?.getAttribute("alt")).toBe(multipleHelloContent);
+});
