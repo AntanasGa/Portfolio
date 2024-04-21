@@ -25,7 +25,6 @@ function DataFetchMiddleware({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (items) {
-      console.log(items);
       manifestReducer?.fullSet(items);
     }
   }, [ items, manifestReducer ]);
