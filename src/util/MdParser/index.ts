@@ -12,7 +12,7 @@ export default function MdParser(markdown: string, context?: ConfigContext) {
 
   const innerContext = context ?? {};
   innerContext.html ??= {};
-  innerContext.html.allowedTags ??= ["a", "img"];
+  innerContext.html.allowedTags ??= ["a", "img", "div"];
   innerContext.html.allowedTags = innerContext.html.allowedTags.map(x => x?.toLowerCase() as keyof ReactHTML | undefined);
 
   const lexed = lexer(markdown);

@@ -33,6 +33,21 @@ it.concurrent("Should work with image elements by default", ({ expect }) => {
   expect(firstOrUndefinedOf(htmlElementList)?.tagName.toLowerCase()).toBe(expectedTag);
 });
 
+it.concurrent("Should work with div elements by default", ({ expect }) => {
+  const expectedTag = "div";
+  const { testId, render } = getRender(`<${expectedTag}>${helloContent}</${expectedTag}>`);
+  const section = render.getByTestId(testId);
+  
+  const htmlElementList = Array.from(section.querySelectorAll(expectedTag) ?? []);
+  
+
+  expect(section).toBeDefined();
+  expect(Array.from(section.children).length).toBe(1);
+  
+  expect(htmlElementList.length).toBe(1);
+  expect(firstOrUndefinedOf(htmlElementList)?.innerHTML).toBe(`${helloContent}`);
+});
+
 it.concurrent("Should not work with script by default", ({ expect }) => {
   const expectedTag = "script";
   const inputHtml = `<${expectedTag}>alert('');</${expectedTag}>`;
