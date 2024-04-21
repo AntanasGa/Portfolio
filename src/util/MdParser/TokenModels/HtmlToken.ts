@@ -28,6 +28,24 @@ function collectAttributes(attributes: string | undefined, key: string, config?:
   if (result.src) {
     result.src = HrefHandler(result.src + "", config?.link?.baseUri);
   }
+  if (result.style) {
+    const style: Record<string, string> = {};
+    result.style = (result.style + "")
+      .split(";")
+      .reduce(
+        (acc, x) => {
+          const [key, value] = x.split(":", 2);
+          const actualKey = key.trim().split("-").map((x, i) => i == 0 ? x : x.charAt(0).toUpperCase() + x.slice(1)).join("");
+          if(!actualKey) {
+            return acc;
+          }
+
+          acc[actualKey] = value.trim();
+          return acc;
+        },
+        style
+    );
+  }
   return result
 }
 
