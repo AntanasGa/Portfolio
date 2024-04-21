@@ -93,3 +93,23 @@ it.concurrent("Should work with image elements with multi word alt", ({ expect }
   expect(selectedElement?.tagName.toLowerCase()).toBe(expectedTag);
   expect(selectedElement?.getAttribute("alt")).toBe(multipleHelloContent);
 });
+
+it.concurrent("Should work with style attribute", ({ expect }) => {
+  const expectedTag = "div";
+  // html rendering automatically adds the semi-colon, keep it in the test
+  const style = "text-align: center;";
+  const { testId, render } = getRender(`<${expectedTag} style="${style}">${helloContent}</${expectedTag}>`);
+  const section = render.getByTestId(testId);
+  
+  const htmlElementList = Array.from(section.querySelectorAll(expectedTag) ?? []);
+  
+
+  expect(section).toBeDefined();
+  expect(Array.from(section.children).length).toBe(1);
+  
+  expect(htmlElementList.length).toBe(1);
+  const selectedElement = firstOrUndefinedOf(htmlElementList);
+  expect(selectedElement?.innerHTML).toBe(`${helloContent}`);
+
+  expect(selectedElement?.getAttribute("style")).toBe(style);
+});
