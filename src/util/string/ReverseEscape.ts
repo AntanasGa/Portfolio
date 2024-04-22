@@ -6,5 +6,6 @@
  * @returns 
  */
 export default function(item: string) {
-  return new DOMParser().parseFromString(item, "text/html").documentElement.textContent;
+  // Wrapping in pre tag to preserve spaces
+  return new DOMParser().parseFromString(`<pre>${item}</pre>`, "text/html").body.firstChild?.textContent;
 }
