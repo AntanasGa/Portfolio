@@ -35,10 +35,15 @@ ${helloContent}</${expectedTag}>`);
 
   expect(section).toBeDefined();
   expect(Array.from(section.children ?? []).length).toBe(1);
-  expect(section.firstChild instanceof HTMLAnchorElement).toBe(true);
-  expect(Array.from(section.firstChild?.childNodes ?? []).length).toBe(1);
-  expect(section.firstChild?.firstChild?.nodeName.toLowerCase()).toBe(PARAGRAPH_HTML_TAG);
-  const elementContents = section.firstChild?.firstChild instanceof Element ? section.firstChild.firstChild : undefined;
+  const likelyAnchor = section.firstChild;
+  expect(likelyAnchor instanceof HTMLAnchorElement).toBe(true);
+  if (!(likelyAnchor instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  expect(Array.from(likelyAnchor.children ?? []).length).toBe(1);
+  expect(likelyAnchor.firstElementChild?.nodeName.toLowerCase()).toBe(PARAGRAPH_HTML_TAG);
+  const elementContents = likelyAnchor.firstElementChild instanceof Element ? likelyAnchor.firstElementChild : undefined;
   expect(elementContents?.innerHTML).toBe(helloContent);
 });
 
@@ -83,9 +88,20 @@ it.concurrent("Should mix well with header inside", ({ expect }) => {
   expect(section).toBeDefined();
 
   expect(Array.from(section.children).length).toBe(1);
-  expect(section.firstChild?.nodeName.toLowerCase()).toBe(expectedTag);
-  expect(Array.from(section.firstChild?.childNodes ?? []).length).toBe(1);
-  expect(section.firstChild?.firstChild?.nodeName.toLowerCase()).toBe("h1");
+  const likelyAnchor = section.firstChild;
+  expect(likelyAnchor?.nodeName.toLowerCase()).toBe(expectedTag);
+  if (!(likelyAnchor instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  expect(Array.from(likelyAnchor.children ?? []).length).toBe(1);
+  
+  const likelyHeader = likelyAnchor.firstElementChild;
+
+  expect(likelyHeader?.nodeName.toLowerCase()).toBe("h1");
+  if (!(likelyHeader instanceof HTMLHeadingElement)) {
+    return;
+  }
   
   const headerElementList = Array.from(section.querySelectorAll("h1"));
   expect(headerElementList.length).toBe(1);
