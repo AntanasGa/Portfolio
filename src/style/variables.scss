@@ -33,6 +33,7 @@ $animation-translucent-color: #FFFFFF03;
 $terminal-accent: #0F0;
 $pallet-primary: 183.97 58.12% 45.88%;
 $pallet-secondary: #956ddf;
+$pallet-secondary-text: #a485df;
 
 $pallet-primary-active: hsl($pallet-primary);
 $pallet-primary-focus: hsl(list.nth($pallet-primary, 1), list.nth($pallet-primary, 2), list.nth($pallet-primary, 3) - 20%);
