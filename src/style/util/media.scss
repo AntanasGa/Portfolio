@@ -3,12 +3,6 @@ $breakpoint-medium: 768px;
 $breakpoint-large: 992px;
 $breakpoint-extra-large: 1200px;
 
-@mixin media-small {
-  @media (max-width: $breakpoint-small) {
-    @content;
-  }
-}
-
 @mixin media-medium {
   @media (min-width: $breakpoint-small) {
     @content;
@@ -23,12 +17,6 @@ $breakpoint-extra-large: 1200px;
 
 @mixin media-extra-large {
   @media (min-width: $breakpoint-large) {
-    @content;
-  }
-}
-
-@mixin media-custom($min-width, $max-width) {
-  @media (min-width: $min-width) and (max-width: $max-width) {
     @content;
   }
 }
