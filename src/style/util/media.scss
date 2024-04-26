@@ -1,22 +1,21 @@
-$breakpoint-small: 576px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 992px;
 $breakpoint-extra-large: 1200px;
 
 @mixin media-medium {
-  @media (min-width: $breakpoint-small) {
-    @content;
-  }
-}
-
-@mixin media-large {
   @media (min-width: $breakpoint-medium) {
     @content;
   }
 }
 
-@mixin media-extra-large {
+@mixin media-large {
   @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin media-extra-large {
+  @media (min-width: $breakpoint-extra-large) {
     @content;
   }
 }
