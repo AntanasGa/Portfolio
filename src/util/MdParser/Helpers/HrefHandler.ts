@@ -1,3 +1,5 @@
+let pathStartList: string[] | undefined = undefined;
+
 export default function(link: string, root?: string) {
   link = link.trim();
   if (link.toLowerCase().startsWith("javascript:")) {
@@ -8,13 +10,14 @@ export default function(link: string, root?: string) {
     "http://",
     "https://",
   ];
-  const pathStartList = [
+
+  pathStartList ??=  [
     "./",
     "/",
     "#",
+    "@",
+    ...fullLinkList,
   ];
-
-  pathStartList.push(...fullLinkList);
 
   if (pathStartList.some(x => link.toLowerCase().startsWith(x))) {
     return link;
