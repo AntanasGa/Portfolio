@@ -4,6 +4,7 @@ import { LANGUAGE_MAP } from '~/translations/config';
 import { CONTENT } from '~/util/cdn/constants';
 import { useMemo } from 'react';
 import { TaggedContentItem } from './types';
+import ResourceExtensionRemover from '~/util/string/ResourceExtensionRemover';
 
 interface ProjectIdentityProps {
   project?: TaggedContentItem;
@@ -19,7 +20,7 @@ export default function ProjectIdentity({ project, disableHover }: ProjectIdenti
     [disableHover]
   );
 
-  const thumbnail = useMemo(() => project?.thumbnail ? project.resource + "/thumbnail.ico" : undefined, [project]);
+  const thumbnail = useMemo(() => project?.thumbnail ? ResourceExtensionRemover(project.resource) + "/thumbnail.ico" : undefined, [project]);
 
   if (!project) {
     return null;

@@ -7,6 +7,7 @@ import RouterError from "~/util/router/RouterError";
 import { useTranslation } from "react-i18next";
 import { LANGUAGE_MAP } from "~/translations/config";
 import { useMemo } from "react";
+import ResourceExtensionRemover from "~/util/string/ResourceExtensionRemover";
 
 interface ProjectWindowProps {
   project: TaggedContentItem;
@@ -18,7 +19,10 @@ export default function ProjectWindow({ project }: ProjectWindowProps) {
   const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
   const projectResource = useMemo(
-    () => new URL(((project.resource ?? "./") + "/").replace(/\/{2,}/, "/"), CONTENT),
+    () => new URL(
+      (( ResourceExtensionRemover(project.resource) ?? "./") + "/").replace(/\/{2,}/, "/"),
+      CONTENT
+    ),
     [project.resource]
   );
 

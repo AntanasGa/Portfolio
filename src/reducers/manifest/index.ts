@@ -6,6 +6,7 @@ import { ReducerContextFunctionMap } from "~/util/reducer/types";
 export interface IContentItem {
   tags: number[],
   name: Record<keyof typeof LANGUAGE_MAP, string>,
+  /** use full when indicating path, remove with `/(\.md)$/ig` as a request */
   resource: string,
   activeSince: number,
   thumbnail?: boolean,
