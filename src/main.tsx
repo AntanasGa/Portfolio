@@ -13,6 +13,7 @@ import Locale$Projects from './routing/:locale/projects.tsx';
 import Index from './routing/index.tsx';
 import Projects$Resource from './routing/:locale/projects/:resource.tsx';
 import ProjectLookupMiddleware from './routing/middleware/projects/ProjectLookupMiddleware.tsx';
+import Locale$FeatureTest from './routing/:locale/FeatureTest.tsx';
 
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
                       }
                     ]
                   },
+                  {
+                    path: "FeatureTest",
+                    element: <Locale$FeatureTest />
+                  }
                   ],
                 },
             ],

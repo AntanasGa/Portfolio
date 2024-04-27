@@ -1,0 +1,36 @@
+
+@include media-default() {
+  .test-area {
+    flex-direction: column;
+
+    &>textarea {
+      min-height: $size-128;
+    }
+  }
+}
+
+@include media-medium() {
+  .test-area {
+    flex-direction: row;
+
+    &>textarea {
+      position: sticky;
+      top: 0;
+      width: 50%;
+      background: $pallet-terminal-body;
+    }
+  }
+}
+
+.test-area {
+  display: flex;
+  position: relative;
+  height: 100%;
+
+  &>textarea {
+    background: $pallet-terminal-body;
+    resize: none;
+    outline: none;
+    border: none;
+  }
+}

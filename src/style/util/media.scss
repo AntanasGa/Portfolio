@@ -2,6 +2,13 @@ $breakpoint-medium: 768px;
 $breakpoint-large: 992px;
 $breakpoint-extra-large: 1200px;
 
+
+@mixin media-default {
+  @media (min-width: 0) {
+    @content;
+  }
+}
+
 @mixin media-medium {
   @media (min-width: $breakpoint-medium) {
     @content;

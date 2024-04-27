@@ -1,0 +1,43 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
+import MarkdownSection from "~/components/MarkdownSection";
+import { LANGUAGE_MAP } from "~/translations/config";
+
+function Locale$FeatureTest() {
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "testPage" });
+  const language = i18n.language as keyof typeof LANGUAGE_MAP;
+
+  const [ textareaValue, setTextareaValue ] = useState("");
+
+  return (
+    <div className="w-screen">
+      <div className="container-xl projects-window projects-resource">
+        <div className="terminal__header">
+          <div></div>
+          <div className="terminal__path">{t("routeName")}</div>
+          <div className="terminal__actions">
+            <NavLink to={ `/${language}/projects` } className="terminal__button" title={ t("returnButton")} />
+          </div>
+        </div>
+        <div className="project-window test-area">
+          <textarea onChange={(e) => setTextareaValue(e.currentTarget.value)}></textarea>
+          <MarkdownSection markdown={ textareaValue }
+            config={{
+              html: {
+                allowedTags: []
+              },
+              link: {
+                navLink: {
+                  disableNavLink: true,
+                },
+              },
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Locale$FeatureTest;
