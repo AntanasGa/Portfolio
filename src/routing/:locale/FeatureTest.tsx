@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import MarkdownSection from "~/components/MarkdownSection";
+import { StarBackgroundReducerContext } from "~/reducers/starbackground";
 import { LANGUAGE_MAP } from "~/translations/config";
 
 function Locale$FeatureTest() {
+  const starBackgroundSetter = useContext(StarBackgroundReducerContext);
   const { t, i18n } = useTranslation("pages", { keyPrefix: "testPage" });
   const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
   const [ textareaValue, setTextareaValue ] = useState("");
+
+  useEffect(
+    () => {
+      starBackgroundSetter?.set({ x: 0, y: 0 });
+    },
+    [starBackgroundSetter]
+  );
 
   return (
     <div className="w-screen">
