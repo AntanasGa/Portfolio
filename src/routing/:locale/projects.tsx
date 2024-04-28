@@ -6,6 +6,8 @@ import { StackIcon } from "~/components/Icons";
 import ProjectIdentity from "~/components/ProjectIdentity";
 import { ManifestStateContext } from "~/reducers/manifest";
 import { StarBackgroundReducerContext } from "~/reducers/starbackground";
+import { LANGUAGE_MAP } from "~/translations/config";
+import setTitle from "~/util/dom/titleSetter";
 import random from "~/util/number/random";
 
 function getResourceRoute<T extends { resource: string }>(locale: i18n, resource: T) {
@@ -17,6 +19,7 @@ function Locale$Projects() {
   const manifestState = useContext(ManifestStateContext);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation("pages", { keyPrefix: "projects" });
+  const language = i18n.language as keyof typeof LANGUAGE_MAP;
 
   const mappedContent = useMemo(
     () => manifestState.content.map((item) => ({...item, tags: item.tags.map(x => manifestState.tags[x])})),
@@ -30,9 +33,19 @@ function Locale$Projects() {
     [navigate, i18n, mappedContent, manifestState.content.length]
   );
 
-  useEffect(() => {
-    starBackgroundSetter?.set({ x: 15, y: -15 })
-  }, [starBackgroundSetter]);
+  useEffect(
+    () => {
+      starBackgroundSetter?.set({ x: 15, y: -15 })
+    },
+    [starBackgroundSetter]
+  );
+
+  useEffect(
+    () => {
+      setTitle(t("routeName"));
+    },
+    [t, language]
+  );
 
   return (
     <div className="w-screen">

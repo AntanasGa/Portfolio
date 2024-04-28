@@ -8,6 +8,7 @@ import { ManifestStateContext } from "~/reducers/manifest";
 import { StarBackgroundReducerContext } from "~/reducers/starbackground";
 import { LANGUAGE_MAP } from "~/translations/config";
 import { firstOrUndefinedOf } from "~/util/array/Selector";
+import setTitle from "~/util/dom/titleSetter";
 
 export default function Projects$Resource() {
   const starBackgroundSetter = useContext(StarBackgroundReducerContext);
@@ -32,6 +33,13 @@ export default function Projects$Resource() {
       starBackgroundSetter?.set({ x: -15, y: 0 });
     },
     [starBackgroundSetter]
+  );
+
+  useEffect(
+    () => {
+      setTitle(project?.name[language] ?? "");
+    },
+    [project, language]
   );
   
   return (

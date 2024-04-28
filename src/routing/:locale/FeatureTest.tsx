@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import MarkdownSection from "~/components/MarkdownSection";
 import { StarBackgroundReducerContext } from "~/reducers/starbackground";
 import { LANGUAGE_MAP } from "~/translations/config";
+import setTitle from "~/util/dom/titleSetter";
 
 function Locale$FeatureTest() {
   const starBackgroundSetter = useContext(StarBackgroundReducerContext);
@@ -17,6 +18,13 @@ function Locale$FeatureTest() {
       starBackgroundSetter?.set({ x: 0, y: 0 });
     },
     [starBackgroundSetter]
+  );
+
+  useEffect(
+    () => {
+      setTitle(t("routeName"));
+    },
+    [t, language]
   );
 
   return (
