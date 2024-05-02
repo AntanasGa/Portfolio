@@ -1,0 +1,9 @@
+.meteor-gazer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $size-screen-width;
+  height: $size-screen-height;
+  z-index: -1;
+  overflow: hidden;
+}
