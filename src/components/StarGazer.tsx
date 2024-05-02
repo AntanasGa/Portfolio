@@ -9,7 +9,6 @@ function StarGazer() {
   const starBackgroundState = useContext(StarBackgroundStateContext);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const activeCount = useRef(1);
 
   const starPositions = useMemo(
     () =>
@@ -33,39 +32,42 @@ function StarGazer() {
         return;
       }
 
-      let reset: number;
-      let date = Date.now();
+      let intervalReset: NodeJS.Timeout | undefined = undefined;
+      let activeCount = 1;
 
       const render = () => {
-        if (Date.now() - date > 25 && activeCount.current < starCount) {
-
-          date = Date.now();
-          activeCount.current += 1;
+        if (activeCount < starCount) {
+          activeCount += 1;
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < activeCount.current; i++) {
+        for (let i = 0; i < activeCount; i++) {
           starPositions[i].step(ctx);
         }
 
-        if (activeCount.current < starCount || !starPositions.every((x) => x.end)) {
-          reset = requestAnimationFrame(render);
-          return;
+        ctx.closePath();
+
+        if (activeCount >= starCount && starPositions.every((x) => x.end)) {
+          clearInterval(intervalReset);
         }
       };
 
-      reset = requestAnimationFrame(render);
+      intervalReset = setInterval(
+        () => requestAnimationFrame(render),
+        // fps locking
+        50
+      );
 
       return () => {
-        cancelAnimationFrame(reset);
+        clearInterval(intervalReset);
       };
     },
     [starPositions]
   );
 
   return (
-    <canvas className="star-gazer" ref={canvasRef} style={starBackgroundState} width={scale * 100} height={scale * 100} />
+    <canvas className="star-gazer" ref={canvasRef} style={starBackgroundState} width={3000} height={3000} />
   );
 }
 
