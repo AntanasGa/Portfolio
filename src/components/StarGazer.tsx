@@ -3,7 +3,7 @@ import { StarBackgroundStateContext } from "~/reducers/starbackground";
 import StarElement from "~/util/dom/StarElement";
 
 function StarGazer() {
-  const starCount = 1000;
+  const starCount = 500;
   const scale = 30;
 
   const starBackgroundState = useContext(StarBackgroundStateContext);

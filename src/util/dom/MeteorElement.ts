@@ -74,7 +74,7 @@ export default class MeteorElement {
     this.cordStepX = cords.x;
     this.cordStepY = cords.y;
 
-    this.sizeDegradeStep = childProps ? random(30, 35) : random(10, 20);
+    this.sizeDegradeStep = random(10, 20);
     this.size = childProps ? 1 : random(2, 4);
 
     this.opacityDegradeStep = random(3, 10);
@@ -119,9 +119,9 @@ export default class MeteorElement {
       return;
     }
 
-    if (this.canSpawnChildren) {
+    if (this.canSpawnChildren && this.children.length < 100) {
       this.children.push(
-        ...new Array(random(10, 35))
+        ...new Array(random(10, 20))
           .fill(
             new MeteorElement({
               color: {
