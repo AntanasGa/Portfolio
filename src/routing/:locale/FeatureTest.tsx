@@ -29,7 +29,7 @@ function Locale$FeatureTest() {
 
   return (
     <div className="w-screen">
-      <div className="container-xl projects-window projects-resource">
+      <div className="container-xl projects-window projects-resource blur">
         <div className="terminal__header">
           <div></div>
           <div className="terminal__path">{t("routeName")}</div>
