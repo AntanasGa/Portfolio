@@ -46,16 +46,18 @@ export default function ProjectWindow({ project }: ProjectWindowProps) {
       <div className="project-window__header">
           <ProjectIdentity project={ project } disableHover />
       </div>
-      <MarkdownSection markdown={ content }
-        config={{
-          link: {
-            baseUri: projectResource.toString(),
-            navLink: {
-              baseLink: `/${language}/`
-            },
-          }
-        }}
-      />
+      <div className="project-window__body">
+        <MarkdownSection markdown={ content }
+          config={{
+            link: {
+              baseUri: projectResource.toString(),
+              navLink: {
+                baseLink: `/${language}/`
+              },
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }

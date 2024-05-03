@@ -49,7 +49,7 @@ function Locale$Projects() {
 
   return (
     <div className="w-screen">
-      <main className="container-md projects-window">
+      <main className="container-md projects-window blur">
         <div className="projects-window__header">
           <StackIcon />
           <h1>{ t("routeName") }</h1>
