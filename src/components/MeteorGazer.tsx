@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MeteorElement from "~/util/dom/MeteorElement";
 import random from "~/util/number/random";
 
@@ -8,6 +8,22 @@ function MeteorGazer() {
   const timeoutIndex = useRef<NodeJS.Timeout | undefined>();
   const intervalIndex = useRef<NodeJS.Timeout | undefined>();
   const limit = useRef(1);
+
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(
+    () => {
+      const resize = () => {
+        setSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+
+      window.addEventListener("resize", resize);
+      return () => {
+        window.removeEventListener("resize", resize);
+      };
+    },
+    []
+  );
 
   useEffect(
     ()=> {
@@ -61,11 +77,9 @@ function MeteorGazer() {
 
   return (
     <div className="meteor-gazer">
-      {/* using UW10K resolution as default width and 12k as height */}
       <canvas
         ref={cavasEl}
-        width={10240 < window.innerWidth ? window.innerWidth : 10240}
-        height={6642 < window.innerHeight ? window.innerHeight : 6642}
+        { ...size }
       ></canvas>
     </div>
   );
