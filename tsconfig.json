@@ -26,6 +26,6 @@
       "~/translations/*": ["./src/translations/*"],
     }
   },
-  "include": ["src", "aliases.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
